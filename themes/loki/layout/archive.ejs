@@ -1,0 +1,70 @@
+<% if (page.tag || page.category) { %>
+  <!-- Single tag / category listing -->
+  <section class="page-head">
+    <p class="mono hero-eyebrow">// <%= page.tag ? 'tag' : 'category' %></p>
+    <h1 class="page-title"><%= page.tag || page.category %><span class="accent">.</span></h1>
+    <p class="muted mono"><%= page.posts.length %> posts</p>
+  </section>
+  <section class="post-list compact">
+    <% page.posts.each(function (post) { %>
+      <a class="post-row" href="<%- url_for(post.path) %>">
+        <time class="post-date mono"><%= date(post.date, 'YYYY.MM.DD') %></time>
+        <div class="post-row-main">
+          <h3 class="post-row-title"><%= post.title %></h3>
+        </div>
+        <span class="post-arrow">→</span>
+      </a>
+    <% }) %>
+  </section>
+<% } else { %>
+  <!-- Full catalog: stats + tags + categories + timeline -->
+  <section class="page-head">
+    <p class="mono hero-eyebrow">// catalog</p>
+    <h1 class="page-title">归档<span class="accent">.</span></h1>
+    <p class="muted">所有文章，按时间倒序。一笔一笔，打包进链。</p>
+  </section>
+
+  <section class="catalog-stats mono">
+    <div class="stat"><span class="stat-num"><%= site.posts.length %></span><span class="stat-label">文章</span></div>
+    <div class="stat"><span class="stat-num"><%= site.tags.length %></span><span class="stat-label">标签</span></div>
+    <div class="stat"><span class="stat-num"><%= site.categories.length %></span><span class="stat-label">分类</span></div>
+  </section>
+
+  <% if (site.tags.length) { %>
+    <section class="catalog-block">
+      <h2 class="section-title mono">标签云</h2>
+      <div class="tag-cloud">
+        <% site.tags.sort('length', -1).each(function (tag) { %>
+          <a class="tag-chip" href="<%- url_for(tag.path) %>">#<%= tag.name %> <span class="tag-count"><%= tag.length %></span></a>
+        <% }) %>
+      </div>
+    </section>
+  <% } %>
+
+  <% if (site.categories.length) { %>
+    <section class="catalog-block">
+      <h2 class="section-title mono">分类</h2>
+      <div class="tag-cloud">
+        <% site.categories.each(function (cat) { %>
+          <a class="tag-chip cat-chip" href="<%- url_for(cat.path) %>"><%= cat.name %> <span class="tag-count"><%= cat.length %></span></a>
+        <% }) %>
+      </div>
+    </section>
+  <% } %>
+
+  <section class="catalog-block">
+    <h2 class="section-title mono">时间线</h2>
+    <% var lastYear = null; %>
+    <% page.posts.each(function (post) { %>
+      <% var y = date(post.date, 'YYYY'); %>
+      <% if (y !== lastYear) { lastYear = y; %>
+        <h3 class="timeline-year mono"><%= y %></h3>
+      <% } %>
+      <a class="timeline-item" href="<%- url_for(post.path) %>">
+        <time class="mono"><%= date(post.date, 'MM.DD') %></time>
+        <span class="timeline-title"><%= post.title %></span>
+        <span class="post-arrow">→</span>
+      </a>
+    <% }) %>
+  </section>
+<% } %>

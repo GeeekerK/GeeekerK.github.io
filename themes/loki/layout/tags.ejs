@@ -1,0 +1,9 @@
+<section class="page-head">
+  <p class="mono hero-eyebrow">// all tags</p>
+  <h1 class="page-title">标签<span class="accent">.</span></h1>
+</section>
+<div class="tag-cloud large">
+  <% site.tags.sort('length', -1).each(function (tag) { %>
+    <a class="tag-chip" href="<%- url_for(tag.path) %>">#<%= tag.name %> <span class="tag-count"><%= tag.length %></span></a>
+  <% }) %>
+</div>
