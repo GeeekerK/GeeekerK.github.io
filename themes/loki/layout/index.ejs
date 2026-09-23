@@ -1,0 +1,35 @@
+<section class="hero">
+  <p class="mono hero-eyebrow">// gm, welcome to my corner of the internet</p>
+  <h1 class="hero-title"><%= config.title %><span class="accent">.</span></h1>
+  <p class="hero-tagline"><%= theme.tagline %></p>
+  <div class="hero-meta mono">
+    <span><%= site.posts.length %> posts on-chain</span>
+    <span class="dot-sep">·</span>
+    <span>since <%= date(site.posts.sort('date', 1).first() ? site.posts.sort('date', 1).first().date : new Date(), 'YYYY.MM') %></span>
+  </div>
+</section>
+
+<section class="post-list">
+  <h2 class="section-title mono">最新文章 <span class="accent">→</span></h2>
+  <% page.posts.each(function (post) { %>
+    <a class="post-row" href="<%- url_for(post.path) %>">
+      <time class="post-date mono"><%= date(post.date, 'YYYY.MM.DD') %></time>
+      <div class="post-row-main">
+        <h3 class="post-row-title"><%= post.title %></h3>
+        <% if (post.excerpt) { %>
+          <p class="post-row-excerpt"><%- strip_html(post.excerpt).substring(0, 110) %>…</p>
+        <% } %>
+        <div class="post-row-tags mono">
+          <% post.tags.each(function (tag) { %><span class="tag-chip">#<%= tag.name %></span><% }) %>
+        </div>
+      </div>
+      <span class="post-arrow">→</span>
+    </a>
+  <% }) %>
+</section>
+
+<% if (page.total > 1) { %>
+  <nav class="pagination mono">
+    <%- paginator({ prev_text: '← 上一页', next_text: '下一页 →', escape: false }) %>
+  </nav>
+<% } %>
