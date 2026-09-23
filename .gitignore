@@ -4,3 +4,7 @@
 *.kimi-rollback-*.tmp
 .fold-*/
 *.tmp-*
+node_modules/
+public/
+db.json
+server.log
