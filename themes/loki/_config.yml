@@ -1,0 +1,16 @@
+# Theme: loki — minimal web3-inspired
+
+accent: "#6C4CF1"
+author: Loki
+tagline: "Building in public — Web3 / Code / Thoughts"
+
+menu:
+  首页: /
+  归档: /archives/
+  标签: /tags/
+  关于: /about/
+
+social:
+  GitHub: https://github.com/loki
+  X: https://x.com/loki
+  ENS: loki.eth
