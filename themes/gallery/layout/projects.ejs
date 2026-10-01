@@ -1,0 +1,24 @@
+<% var projects = site.data.projects || []; %>
+<section class="shell page-head">
+  <p class="caption">Projects — 项目画廊</p>
+  <h1 class="page-title">展厅</h1>
+  <p class="page-sub"><%= projects.length %> 件展品。做东西是最好的学习方式。</p>
+</section>
+
+<section class="shell">
+  <% projects.forEach(function (p, i) { %>
+    <a class="exhibit reveal" href="<%= p.link || '#' %>">
+      <div class="exhibit-frame">
+        <span class="exhibit-frame-no"><%= String(i + 1).padStart(2, '0') %></span>
+        <span class="exhibit-frame-name"><%= p.name %></span>
+      </div>
+      <div class="exhibit-caption">
+        <span class="exhibit-title"><%= p.name %></span>
+        <span class="exhibit-line"><%= p.tagline %></span>
+        <span class="exhibit-meta">
+          <%= p.year %> · <%= p.status %><% if (p.tags && p.tags.length) { %> · <%= p.tags.join(', ') %><% } %>
+        </span>
+      </div>
+    </a>
+  <% }) %>
+</section>

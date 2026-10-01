@@ -1,0 +1,75 @@
+<% if (page.tag || page.category) { %>
+  <!-- 单标签 / 单分类 -->
+  <section class="container page-head">
+    <p class="eyebrow"><%= page.tag ? __('archives.tags_title') : 'Category' %></p>
+    <h1 class="page-title"><%= page.tag || page.category %></h1>
+    <p class="page-sub"><%= page.posts.length %> <%= __('archives.posts_unit') %></p>
+  </section>
+  <section class="container writing-list-section">
+    <div class="writing-list">
+      <% page.posts.each(function (post) { %>
+        <a class="writing-row" href="<%- url_for(post.path) %>">
+          <span class="writing-kind"><%= post.categories.length ? post.categories.first().name : __('filter.other') %></span>
+          <span class="writing-title"><%= post.title %></span>
+          <time class="writing-date"><%= date(post.date, 'YYYY年M月D日') %></time>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+<% } else { %>
+  <!-- 日志目录 -->
+  <%
+    var _lang = page.lang || 'zh-CN';
+    var langPosts = site.posts.toArray().filter(function (p) { return (p.lang || 'zh-CN') === _lang; })
+      .sort(function (a, b) { return b.date - a.date; });
+    var langTags = site.tags.toArray().filter(function (t) {
+      return t.posts.toArray().some(function (p) { return (p.lang || 'zh-CN') === _lang; });
+    }).sort(function (a, b) { return b.length - a.length; });
+  %>
+  <section class="container page-head">
+    <p class="vertical head-vertical"><%= __('archives.vertical') %></p>
+    <div>
+      <p class="eyebrow"><%= __('archives.eyebrow') %></p>
+      <h1 class="page-title"><%= __('archives.title') %></h1>
+      <p class="page-sub"><%= __('archives.sub', langPosts.length) %></p>
+      <div class="blog-filter" id="blog-filter">
+        <button class="filter-btn active" data-cat="all"><%= __('filter.all') %></button>
+        <button class="filter-btn" data-cat="diary"><%= __('filter.diary') %></button>
+        <button class="filter-btn" data-cat="weekly"><%= __('filter.weekly') %></button>
+        <button class="filter-btn" data-cat="annual"><%= __('filter.annual') %></button>
+        <button class="filter-btn" data-cat="other"><%= __('filter.other') %></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="container timeline-section">
+    <% var lastYear = null; %>
+    <% var catMap = { '日记': 'diary', '日記': 'diary', '周报': 'weekly', '週報': 'weekly', '年报': 'annual', '年報': 'annual' }; %>
+    <% var labelMap = { diary: __('filter.diary'), weekly: __('filter.weekly'), annual: __('filter.annual'), other: __('filter.other') }; %>
+    <% langPosts.forEach(function (post) { %>
+      <% var cat = post.categories.length ? post.categories.first().name : 'other'; %>
+      <% var key = catMap[cat] || 'other'; %>
+      <% var y = date(post.date, 'YYYY'); %>
+      <% if (y !== lastYear) { lastYear = y; %>
+        <h2 class="timeline-year" data-year-row><span class="year-cn"><%= y %></span></h2>
+      <% } %>
+      <a class="timeline-item" data-cat="<%= key %>" href="<%- url_for(post.path) %>">
+        <span class="timeline-kind kind-<%= key %>"><%= labelMap[key] %></span>
+        <span class="timeline-title"><%= post.title %></span>
+        <time><%= date(post.date, 'M月D日') %></time>
+        <span class="timeline-arrow">→</span>
+      </a>
+    <% }) %>
+  </section>
+
+  <% if (langTags.length) { %>
+    <section class="container tags-section">
+      <h2 class="section-title"><span class="juan"><%= __('archives.tags') %></span><%= __('archives.tags_title') %></h2>
+      <div class="tag-cloud">
+        <% langTags.forEach(function (tag) { %>
+          <a class="tag" href="<%- url_for(tag.path) %>"><%= tag.name %> <span class="tag-count"><%= tag.length %></span></a>
+        <% }) %>
+      </div>
+    </section>
+  <% } %>
+<% } %>

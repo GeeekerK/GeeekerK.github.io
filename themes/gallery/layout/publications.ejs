@@ -1,0 +1,51 @@
+<% var pubs = site.data.publications || {}; %>
+<section class="shell page-head">
+  <p class="caption">Publications — 著作</p>
+  <h1 class="page-title">著作</h1>
+  <p class="page-sub">论文、文章与书——思考的三种装订方式。</p>
+</section>
+
+<% if (pubs.papers && pubs.papers.length) { %>
+<section class="shell-narrow pub-section">
+  <p class="caption">论文 — Papers (<%= pubs.papers.length %>)</p>
+  <% pubs.papers.forEach(function (pub, i) { %>
+    <div class="pub-entry reveal">
+      <span class="pub-no">[<%= pubs.papers.length - i %>]</span>
+      <div class="pub-main">
+        <p class="pub-title"><%= pub.title %></p>
+        <p class="pub-venue"><%= pub.authors %>. <em><%= pub.venue %></em>, <%= pub.year %>.<% if (pub.link) { %> <a class="pub-link" href="<%= pub.link %>">PDF</a><% } %></p>
+      </div>
+    </div>
+  <% }) %>
+</section>
+<% } %>
+
+<% if (pubs.articles && pubs.articles.length) { %>
+<section class="shell-narrow pub-section">
+  <p class="caption">文章 — Articles (<%= pubs.articles.length %>)</p>
+  <% pubs.articles.forEach(function (pub) { %>
+    <div class="pub-entry reveal">
+      <span class="pub-no"><%= pub.year %></span>
+      <div class="pub-main">
+        <p class="pub-title"><%= pub.title %></p>
+        <p class="pub-venue"><%= pub.venue %><% if (pub.link) { %> · <a class="pub-link" href="<%= pub.link %>">阅读</a><% } %></p>
+      </div>
+    </div>
+  <% }) %>
+</section>
+<% } %>
+
+<% if (pubs.books && pubs.books.length) { %>
+<section class="shell-narrow pub-section">
+  <p class="caption">图书 — Books (<%= pubs.books.length %>)</p>
+  <% pubs.books.forEach(function (book) { %>
+    <div class="pub-entry reveal">
+      <span class="pub-no"><%= book.year %></span>
+      <div class="pub-main">
+        <p class="pub-title book-title"><%= book.title %></p>
+        <p class="pub-venue"><%= book.role %> · <%= book.publisher %></p>
+      </div>
+    </div>
+  <% }) %>
+</section>
+<% } %>

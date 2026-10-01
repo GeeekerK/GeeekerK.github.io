@@ -1,0 +1,42 @@
+[
+  {
+    "name": "文房 · lokiBLOG",
+    "tagline": "你正在看的这个网站",
+    "description": "基于 Hexo 的个人主页与博客，手工打磨的「文房」主题——羊皮纸底色、宋体排版、朱砂印章、生成式纹理。前身为 2022 年创立的 Geeker BLOG。",
+    "year": "2022",
+    "status": "进行中",
+    "featured": true,
+    "tags": ["Hexo", "EJS", "CSS"],
+    "link": "/"
+  },
+  {
+    "name": "Geeker BLOG",
+    "tagline": "前身博客，沉淀了最早的 CTF 笔记",
+    "description": "2022 年建立的第一个博客，记录了 CTF 入门到取证、密码学的完整学习轨迹。全部内容已迁入本站归档。",
+    "year": "2022",
+    "status": "已归档",
+    "featured": true,
+    "tags": ["Hexo", "CTF", "GitHub Pages"],
+    "link": "https://github.com/GeeekerK/old_geeekerk.github.io"
+  },
+  {
+    "name": "Grain",
+    "tagline": "生成式纹理引擎",
+    "description": "本站首页背景的纹理就来自它——一个用分层正弦场模拟有机噪点的微型 Canvas 引擎，不到 100 行。",
+    "year": "2026",
+    "status": "已发布",
+    "featured": true,
+    "tags": ["Canvas", "Generative Art"],
+    "link": "https://github.com/GeeekerK"
+  },
+  {
+    "name": "CTF 工具箱",
+    "tagline": "一篇持续更新的工具长文",
+    "description": "从 2022 年写到现在：密码学、隐写、取证各方向称手工具的清单与用法，全站阅读量最高的笔记之一。",
+    "year": "2022",
+    "status": "进行中",
+    "featured": false,
+    "tags": ["CTF", "Tools"],
+    "link": "/2022/10/03/CTF工具箱/"
+  }
+]

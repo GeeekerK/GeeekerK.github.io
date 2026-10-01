@@ -1,0 +1,61 @@
+<%
+  var latestPosts = site.posts.sort('-date').limit(5);
+%>
+
+<!-- 卷首 -->
+<section class="hero shell">
+  <p class="vertical hero-motto"><%= theme.vertical_motto %></p>
+  <div class="hero-main">
+    <p class="eyebrow reveal">岁次丙午 · 个人卷宗</p>
+    <h1 class="hero-title reveal"><%= theme.statement %></h1>
+    <p class="hero-sub reveal"><%= theme.author %> — <%= theme.tagline %></p>
+    <div class="hero-rules reveal" aria-hidden="true"><span></span><span></span></div>
+    <div class="hero-stats reveal">
+      <span><b><%= site.posts.length %></b> 篇日志</span>
+      <span><b><%= (site.data.projects || []).length %></b> 件造物</span>
+      <span><b><%= ((site.data.publications || {}).papers || []).length + ((site.data.publications || {}).articles || []).length + ((site.data.publications || {}).books || []).length %></b> 种著述</span>
+    </div>
+  </div>
+</section>
+
+<!-- 目录 · 界栏式 -->
+<nav class="jielan shell" aria-label="站点目录">
+  <a class="jielan-row reveal" href="<%- url_for('/archives/') %>">
+    <span class="jielan-label">日志</span>
+    <span class="jielan-desc">日记 · 周报 · 年报</span>
+    <span class="jielan-arrow">→</span>
+  </a>
+  <a class="jielan-row reveal" href="<%- url_for('/projects/') %>">
+    <span class="jielan-label">造物</span>
+    <span class="jielan-desc">个人项目陈列</span>
+    <span class="jielan-arrow">→</span>
+  </a>
+  <a class="jielan-row reveal" href="<%- url_for('/publications/') %>">
+    <span class="jielan-label">著述</span>
+    <span class="jielan-desc">论文 · 文章 · 图书</span>
+    <span class="jielan-arrow">→</span>
+  </a>
+  <a class="jielan-row reveal" href="<%- url_for('/about/') %>">
+    <span class="jielan-label">小传</span>
+    <span class="jielan-desc">关于我</span>
+    <span class="jielan-arrow">→</span>
+  </a>
+  <a class="jielan-row reveal" href="<%- url_for('/contact/') %>">
+    <span class="jielan-label">雁书</span>
+    <span class="jielan-desc">社交与简历</span>
+    <span class="jielan-arrow">→</span>
+  </a>
+</nav>
+
+<!-- 近期日志 -->
+<section class="shell-narrow latest">
+  <p class="eyebrow reveal">近期日志</p>
+  <div class="latest-list">
+    <% latestPosts.each(function (post) { %>
+      <a class="latest-row reveal" href="<%- url_for(post.path) %>">
+        <span class="latest-title"><%= post.title %></span>
+        <span class="latest-meta"><%= ink_date(post.date) %></span>
+      </a>
+    <% }) %>
+  </div>
+</section>

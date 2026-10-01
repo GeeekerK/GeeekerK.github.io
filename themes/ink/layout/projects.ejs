@@ -1,0 +1,23 @@
+<% var projects = site.data.projects || []; %>
+<section class="shell page-head">
+  <p class="vertical head-vertical">造物以载道</p>
+  <div>
+    <p class="eyebrow">造物 · Works</p>
+    <h1 class="page-title">造物</h1>
+    <p class="page-sub"><%= projects.length %> 件作品，皆是时间的手艺。</p>
+  </div>
+</section>
+
+<section class="shell-narrow works-list">
+  <% projects.forEach(function (p, i) { %>
+    <a class="work-row reveal" href="<%= p.link || '#' %>">
+      <span class="work-no"><%= ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'][i] || (i + 1) %></span>
+      <span class="work-main">
+        <span class="work-name"><%= p.name %></span>
+        <span class="work-line"><%= p.tagline %></span>
+        <span class="work-meta"><%= p.year %> · <%= p.status %><% if (p.tags && p.tags.length) { %> · <%= p.tags.join(' / ') %><% } %></span>
+      </span>
+      <span class="jielan-arrow">→</span>
+    </a>
+  <% }) %>
+</section>

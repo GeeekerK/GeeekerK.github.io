@@ -1,0 +1,31 @@
+<section class="container page-head">
+  <p class="eyebrow">Contact</p>
+  <h1 class="page-title">联系</h1>
+  <p class="page-sub">门一直开着。</p>
+</section>
+
+<section class="container contact-grid">
+  <div class="contact-block">
+    <h2 class="contact-label">邮箱</h2>
+    <a class="contact-email" href="mailto:<%= theme.email %>"><%= theme.email %></a>
+    <p class="contact-note">通常 48 小时内回复。谈合作请直接说明来意。</p>
+  </div>
+
+  <div class="contact-block">
+    <h2 class="contact-label">社交</h2>
+    <div class="contact-socials">
+      <% for (var name in theme.social) { %>
+        <a class="contact-social" href="<%= theme.social[name].startsWith('http') || theme.social[name].startsWith('/') ? theme.social[name] : '#' %>">
+          <span><%= name %></span>
+          <span class="contact-arrow">↗</span>
+        </a>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="contact-block cv-block">
+    <h2 class="contact-label">简历</h2>
+    <p class="contact-note">一份持续更新的 CV，包含经历、技能与著作清单。</p>
+    <a class="btn btn-primary" href="<%- url_for('/cv/') %>">查看 CV →</a>
+  </div>
+</section>

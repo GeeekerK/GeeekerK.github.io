@@ -1,0 +1,22 @@
+# Theme: nocturne — 暗夜生成 · Generative Dark
+# Deep-space canvas, electric violet × cyan gradients,
+# mono annotation layer, generative particle texture.
+
+author: Loki
+email: hi@loki.blog
+tagline: 构建、记录、上链。
+hero_line: 在黑暗里写代码，也在黑暗里写字。
+
+menu:
+  首页: /
+  博客: /archives/
+  项目: /projects/
+  著作: /publications/
+  关于: /about/
+  联系: /contact/
+
+social:
+  GitHub: https://github.com/loki
+  X: https://x.com/loki
+  知乎: https://zhihu.com/people/loki
+  RSS: /atom.xml

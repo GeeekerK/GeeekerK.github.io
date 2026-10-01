@@ -1,0 +1,24 @@
+<section class="shell page-head">
+  <p class="caption">Contact — 联系</p>
+  <h1 class="page-title">写信给我</h1>
+</section>
+
+<section class="shell-narrow contact-section">
+  <a class="contact-email reveal" href="mailto:<%= theme.email %>"><%= theme.email %></a>
+  <p class="contact-note reveal">通常 48 小时内回复。谈合作请直接说明来意。</p>
+
+  <div class="contact-rows">
+    <% var i = 0; for (var name in theme.social) { i++; %>
+      <a class="contact-row reveal" href="<%= theme.social[name].startsWith('http') || theme.social[name].startsWith('/') ? theme.social[name] : '#' %>">
+        <span class="archive-no"><%= String(i).padStart(2, '0') %></span>
+        <span class="archive-title"><%= name %></span>
+        <span class="archive-meta">↗</span>
+      </a>
+    <% } %>
+    <a class="contact-row reveal" href="<%- url_for('/cv/') %>">
+      <span class="archive-no"><%= String(i + 1).padStart(2, '0') %></span>
+      <span class="archive-title">CV / 简历</span>
+      <span class="archive-meta">→</span>
+    </a>
+  </div>
+</section>

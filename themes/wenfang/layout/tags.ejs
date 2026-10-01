@@ -1,0 +1,9 @@
+<section class="shell page-head container" style="display:block">
+  <p class="eyebrow"><%= __('archives.tags_title') %> · Tags</p>
+  <h1 class="page-title"><%= __('archives.tags_title') %></h1>
+</section>
+<div class="container tag-cloud large">
+  <% site.tags.sort('length', -1).each(function (tag) { %>
+    <a class="tag" href="<%- url_for(tag.path) %>"><%= tag.name %> <span class="tag-count"><%= tag.length %></span></a>
+  <% }) %>
+</div>

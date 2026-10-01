@@ -1,0 +1,93 @@
+<%
+  var featuredProjects = (site.data.projects || []).filter(function (p) { return p.featured; }).slice(0, 3);
+  var pubs = site.data.publications || {};
+  var recentPubs = (pubs.papers || []).concat(pubs.articles || []).slice(0, 3);
+  var latestPosts = site.posts.sort('-date').limit(4);
+%>
+
+<!-- 门厅 Hero -->
+<section class="hero">
+  <canvas id="grain-canvas" aria-hidden="true"></canvas>
+  <div class="container hero-inner">
+    <p class="eyebrow">Personal Homepage &amp; Salon</p>
+    <h1 class="hero-title"><%= theme.tagline %></h1>
+    <p class="hero-sub"><%= theme.hero_line %></p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="<%- url_for('/projects/') %>">看看我做的东西</a>
+      <a class="btn btn-ghost" href="<%- url_for('/about/') %>">关于我 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 最新写作 -->
+<section class="section container">
+  <div class="section-head">
+    <h2 class="section-title">最新写作</h2>
+    <a class="section-more" href="<%- url_for('/archives/') %>">全部文章 →</a>
+  </div>
+  <div class="writing-list">
+    <% latestPosts.each(function (post) { %>
+      <a class="writing-row" href="<%- url_for(post.path) %>">
+        <span class="writing-kind"><%= post.categories.length ? post.categories.first().name : '随笔' %></span>
+        <span class="writing-title"><%= post.title %></span>
+        <time class="writing-date"><%= date(post.date, 'YYYY.MM.DD') %></time>
+      </a>
+    <% }) %>
+  </div>
+</section>
+
+<!-- 精选项目 -->
+<% if (featuredProjects.length) { %>
+<section class="section container">
+  <div class="section-head">
+    <h2 class="section-title">精选项目</h2>
+    <a class="section-more" href="<%- url_for('/projects/') %>">项目画廊 →</a>
+  </div>
+  <div class="project-grid">
+    <% featuredProjects.forEach(function (p) { %>
+      <a class="project-card" href="<%= p.link || '#' %>">
+        <div class="project-card-top">
+          <span class="project-year"><%= p.year %></span>
+          <span class="project-status status-<%= p.status %>"><%= p.status %></span>
+        </div>
+        <h3 class="project-name"><%= p.name %></h3>
+        <p class="project-tagline"><%= p.tagline %></p>
+        <div class="project-tags">
+          <% (p.tags || []).forEach(function (t) { %><span><%= t %></span><% }) %>
+        </div>
+      </a>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<!-- 近期著作（深色章节） -->
+<% if (recentPubs.length) { %>
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">近期著作</h2>
+      <a class="section-more" href="<%- url_for('/publications/') %>">全部著作 →</a>
+    </div>
+    <div class="pub-list">
+      <% recentPubs.forEach(function (pub) { %>
+        <div class="pub-row">
+          <span class="pub-year"><%= pub.year %></span>
+          <div class="pub-main">
+            <p class="pub-title"><%= pub.title %></p>
+            <p class="pub-venue"><%= pub.venue %></p>
+          </div>
+          <% if (pub.link) { %><a class="pub-link" href="<%= pub.link %>">阅读 →</a><% } %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 结尾 CTA -->
+<section class="section container cta-section">
+  <h2 class="cta-title">想聊聊？</h2>
+  <p class="cta-sub">合作、约稿、或者只是打个招呼，都欢迎。</p>
+  <a class="btn btn-primary" href="mailto:<%= theme.email %>"><%= theme.email %></a>
+</section>

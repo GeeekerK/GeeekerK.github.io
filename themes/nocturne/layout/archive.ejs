@@ -1,0 +1,61 @@
+<% if (page.tag || page.category) { %>
+  <section class="shell page-head">
+    <p class="mono eyebrow">/// <%= page.tag ? 'TAG' : 'CATEGORY' %></p>
+    <h1 class="page-title"><%= page.tag || page.category %><span class="grad-text">.</span></h1>
+    <p class="page-sub mono"><%= page.posts.length %> posts</p>
+  </section>
+  <section class="shell">
+    <div class="commit-list">
+      <% page.posts.each(function (post) { %>
+        <a class="commit-row" href="<%- url_for(post.path) %>">
+          <span class="commit-node"></span>
+          <span class="commit-hash mono"><%= date(post.date, 'YYMMDD') %></span>
+          <span class="commit-title"><%= post.title %></span>
+          <span class="commit-cat mono"><%= post.categories.length ? post.categories.first().name : '随笔' %></span>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+<% } else { %>
+  <section class="shell page-head">
+    <p class="mono eyebrow">/// BLOG · LOG_STREAM</p>
+    <h1 class="page-title">写作<span class="grad-text">.</span></h1>
+    <p class="page-sub">日记是呼吸，周报是节奏，年报是回望。</p>
+    <div class="blog-filter mono" id="blog-filter">
+      <button class="filter-btn active" data-cat="all">ALL</button>
+      <button class="filter-btn" data-cat="日记">日记</button>
+      <button class="filter-btn" data-cat="周报">周报</button>
+      <button class="filter-btn" data-cat="年报">年报</button>
+      <button class="filter-btn" data-cat="other">其他</button>
+    </div>
+  </section>
+
+  <section class="shell timeline-section">
+    <% var lastYear = null; %>
+    <% page.posts.each(function (post) { %>
+      <% var cat = post.categories.length ? post.categories.first().name : 'other'; %>
+      <% var key = ['日记', '周报', '年报'].indexOf(cat) >= 0 ? cat : 'other'; %>
+      <% var y = date(post.date, 'YYYY'); %>
+      <% if (y !== lastYear) { lastYear = y; %>
+        <h2 class="timeline-year mono" data-year-row><%= y %></h2>
+      <% } %>
+      <a class="commit-row" data-cat="<%= key %>" href="<%- url_for(post.path) %>">
+        <span class="commit-node node-<%= key %>"></span>
+        <span class="commit-hash mono"><%= date(post.date, 'YYMMDD') %></span>
+        <span class="commit-title"><%= post.title %></span>
+        <span class="commit-cat mono kind-<%= key %>"><%= cat === 'other' ? '随笔' : cat %></span>
+      </a>
+    <% }) %>
+  </section>
+
+  <% if (site.tags.length) { %>
+    <section class="shell tags-section">
+      <h2 class="section-title mono">TAGS <span class="grad-text">//</span></h2>
+      <div class="tag-cloud mono">
+        <% site.tags.sort('length', -1).each(function (tag) { %>
+          <a class="tag" href="<%- url_for(tag.path) %>">#<%= tag.name %> <span class="tag-count"><%= tag.length %></span></a>
+        <% }) %>
+      </div>
+    </section>
+  <% } %>
+<% } %>

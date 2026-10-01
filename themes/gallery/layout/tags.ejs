@@ -1,0 +1,9 @@
+<section class="shell page-head">
+  <p class="caption">All Tags</p>
+  <h1 class="page-title">标签</h1>
+</section>
+<div class="shell tag-cloud large">
+  <% site.tags.sort('length', -1).each(function (tag) { %>
+    <a class="tag" href="<%- url_for(tag.path) %>"><%= tag.name %><span class="tag-count"><%= tag.length %></span></a>
+  <% }) %>
+</div>

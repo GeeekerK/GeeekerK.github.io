@@ -1,0 +1,79 @@
+menu:
+  home: 首页
+  archives: 日志
+  projects: 造物
+  publications: 著述
+  about: 小传
+  contact: 雁书
+lang_switch: 日本語
+lang_switch_title: 切换到日本語
+hero:
+  eyebrow: 岁次丙午 · 卷宗始于壬寅年
+  title: 缓慢但正确地做事。
+  sub: 王伟 — 著文、造物、问学。
+  stat_posts: 篇日志
+  stat_projects: 件造物
+  stat_works: 种著述
+  btn_projects: 观我造物
+  btn_about: 读我小传 →
+home:
+  vol1: 卷一
+  vol1_title: 近期日志
+  vol2: 卷二
+  vol2_title: 造物选
+  vol3: 卷三
+  vol3_title: 著述
+  all_posts: 全部日志 →
+  all_projects: 项目画廊 →
+  all_works: 全部著述 →
+  read: 阅读 →
+cta:
+  title: 有信自远方来
+  sub: 合作、约稿、或者只是打个招呼，都欢迎。
+footer:
+  tagline: 著文、造物、问学。
+  meta: © %s–%s %s · 自 %s 年写字 · 纸墨为骨 · Hexo 静态生成
+filter:
+  all: 全部
+  diary: 日记
+  weekly: 周报
+  annual: 年报
+  other: 其他
+archives:
+  eyebrow: 日志 · Archive
+  title: 日志
+  sub: 日记是呼吸，周报是节奏，年报是回望。共 %s 篇。
+  tags: 附
+  tags_title: 标签
+  vertical: 日知其所亡
+  posts_unit: 篇
+annual:
+  label: 年报
+  vertical: 岁次%s · 年终回望
+projects:
+  eyebrow: 造物 · Works
+  title: 造物
+  sub: "%s 件作品，皆是时间的手艺。"
+  vertical: 造物以载道
+publications:
+  eyebrow: 著述 · Publications
+  title: 著述
+  sub: 论文、文章与书——思考的三种装订方式。
+  vertical: 著书以立言
+  papers: 论
+  papers_title: 论文
+  articles: 文
+  articles_title: 文章
+  books: 书
+  books_title: 图书
+contact:
+  eyebrow: 雁书 · Contact
+  title: 雁书
+  sub: 门一直开着，信一直收。
+  vertical: 鸿雁长飞
+  email: 手书
+  email_note: 通常四十八小时内回复。谈合作请直接说明来意。
+  socials: 足迹
+  cv: 履历
+  cv_note: 一份持续更新的 CV，包含经历、技能与著述清单。
+  cv_btn: 查看 CV →

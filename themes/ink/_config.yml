@@ -1,0 +1,23 @@
+# Theme: ink — 纸墨东方 · Ink & Seal
+# Rice-paper white, ink black, vermillion seal.
+# Song-serif CJK with vertical-text accents and hairline rules.
+
+author: Loki
+seal_char: 洛
+email: hi@loki.blog
+tagline: 著文、造物、问学。
+statement: 缓慢但正确地做事。
+vertical_motto: 路漫漫其修远兮
+
+menu:
+  日志: /archives/
+  造物: /projects/
+  著述: /publications/
+  小传: /about/
+  雁书: /contact/
+
+social:
+  GitHub: https://github.com/loki
+  X: https://x.com/loki
+  知乎: https://zhihu.com/people/loki
+  RSS: /atom.xml

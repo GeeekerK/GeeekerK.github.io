@@ -1,0 +1,62 @@
+<% if (page.tag || page.category) { %>
+  <!-- 单标签 / 单分类列表 -->
+  <section class="container page-head">
+    <p class="eyebrow"><%= page.tag ? 'Tag' : 'Category' %></p>
+    <h1 class="page-title"><%= page.tag || page.category %></h1>
+    <p class="page-sub"><%= page.posts.length %> 篇</p>
+  </section>
+  <section class="container writing-list-section">
+    <div class="writing-list">
+      <% page.posts.each(function (post) { %>
+        <a class="writing-row" href="<%- url_for(post.path) %>">
+          <span class="writing-kind"><%= post.categories.length ? post.categories.first().name : '随笔' %></span>
+          <span class="writing-title"><%= post.title %></span>
+          <time class="writing-date"><%= date(post.date, 'YYYY.MM.DD') %></time>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+<% } else { %>
+  <!-- 博客目录：日记 / 周报 / 年报 过滤 + 年时间线 -->
+  <section class="container page-head">
+    <p class="eyebrow">Blog</p>
+    <h1 class="page-title">写作</h1>
+    <p class="page-sub">日记是呼吸，周报是节奏，年报是回望。</p>
+    <div class="blog-filter" id="blog-filter">
+      <button class="filter-btn active" data-cat="all">全部</button>
+      <button class="filter-btn" data-cat="日记">日记</button>
+      <button class="filter-btn" data-cat="周报">周报</button>
+      <button class="filter-btn" data-cat="年报">年报</button>
+      <button class="filter-btn" data-cat="other">其他</button>
+    </div>
+  </section>
+
+  <section class="container timeline-section">
+    <% var lastYear = null; %>
+    <% page.posts.each(function (post) { %>
+      <% var cat = post.categories.length ? post.categories.first().name : 'other'; %>
+      <% var key = ['日记', '周报', '年报'].indexOf(cat) >= 0 ? cat : 'other'; %>
+      <% var y = date(post.date, 'YYYY'); %>
+      <% if (y !== lastYear) { lastYear = y; %>
+        <h2 class="timeline-year" data-year-row><%= y %></h2>
+      <% } %>
+      <a class="timeline-item" data-cat="<%= key %>" href="<%- url_for(post.path) %>">
+        <time><%= date(post.date, 'MM.DD') %></time>
+        <span class="timeline-kind kind-<%= key %>"><%= cat === 'other' ? '随笔' : cat %></span>
+        <span class="timeline-title"><%= post.title %></span>
+        <span class="timeline-arrow">→</span>
+      </a>
+    <% }) %>
+  </section>
+
+  <% if (site.tags.length) { %>
+    <section class="container tags-section">
+      <h2 class="section-title">标签</h2>
+      <div class="tag-cloud">
+        <% site.tags.sort('length', -1).each(function (tag) { %>
+          <a class="tag" href="<%- url_for(tag.path) %>"><%= tag.name %> <span class="tag-count"><%= tag.length %></span></a>
+        <% }) %>
+      </div>
+    </section>
+  <% } %>
+<% } %>

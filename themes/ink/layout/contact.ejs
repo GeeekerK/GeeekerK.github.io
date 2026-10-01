@@ -1,0 +1,28 @@
+<section class="shell page-head">
+  <p class="vertical head-vertical">鸿雁长飞</p>
+  <div>
+    <p class="eyebrow">雁书 · Contact</p>
+    <h1 class="page-title">雁书</h1>
+    <p class="page-sub">门一直开着，信一直收。</p>
+  </div>
+</section>
+
+<section class="shell-narrow contact-section">
+  <p class="eyebrow reveal">手书</p>
+  <a class="contact-email reveal" href="mailto:<%= theme.email %>"><%= theme.email %></a>
+  <p class="contact-note reveal">通常四十八小时内回复。谈合作请直接说明来意。</p>
+
+  <p class="eyebrow reveal" style="margin-top: 80px;">足迹</p>
+  <div class="latest-list">
+    <% for (var name in theme.social) { %>
+      <a class="latest-row reveal" href="<%= theme.social[name].startsWith('http') || theme.social[name].startsWith('/') ? theme.social[name] : '#' %>">
+        <span class="latest-title"><%= name %></span>
+        <span class="latest-meta">↗</span>
+      </a>
+    <% } %>
+    <a class="latest-row reveal" href="<%- url_for('/cv/') %>">
+      <span class="latest-title">履历 · CV</span>
+      <span class="latest-meta">→</span>
+    </a>
+  </div>
+</section>

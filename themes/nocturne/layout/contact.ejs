@@ -1,0 +1,29 @@
+<section class="shell page-head">
+  <p class="mono eyebrow">/// CONTACT</p>
+  <h1 class="page-title">建立连接<span class="grad-text">.</span></h1>
+  <p class="page-sub">门一直开着。</p>
+</section>
+
+<section class="shell contact-wrap">
+  <div class="terminal">
+    <div class="terminal-bar">
+      <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+      <span class="terminal-title mono">loki@node ~/contact</span>
+    </div>
+    <div class="terminal-body mono">
+      <p><span class="term-prompt">$</span> whoami</p>
+      <p class="term-out"><%= theme.author %> — 写代码的人，链上世界的常住居民。</p>
+      <p><span class="term-prompt">$</span> cat ./email.txt</p>
+      <p class="term-out"><a class="term-link" href="mailto:<%= theme.email %>"><%= theme.email %></a> <span class="term-dim"># 通常 48 小时内回复</span></p>
+      <p><span class="term-prompt">$</span> ls ./social/</p>
+      <p class="term-out term-socials">
+        <% for (var name in theme.social) { %>
+          <a class="term-link" href="<%= theme.social[name].startsWith('http') || theme.social[name].startsWith('/') ? theme.social[name] : '#' %>"><%= name %> ↗</a>
+        <% } %>
+      </p>
+      <p><span class="term-prompt">$</span> open ./cv.pdf</p>
+      <p class="term-out">→ <a class="term-link" href="<%- url_for('/cv/') %>">查看简历</a> <span class="term-dim"># 打印即导出 PDF</span></p>
+      <p><span class="term-prompt">$</span> <span class="term-cursor">▊</span></p>
+    </div>
+  </div>
+</section>

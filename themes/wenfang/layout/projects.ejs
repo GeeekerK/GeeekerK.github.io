@@ -1,0 +1,29 @@
+<% var projects = site.data.projects || []; %>
+<section class="container page-head">
+  <p class="vertical head-vertical"><%= __('projects.vertical') %></p>
+  <div>
+    <p class="eyebrow"><%= __('projects.eyebrow') %></p>
+    <h1 class="page-title"><%= __('projects.title') %></h1>
+    <p class="page-sub"><%= __('projects.sub', projects.length) %></p>
+  </div>
+</section>
+
+<section class="container">
+  <div class="project-grid gallery">
+    <% projects.forEach(function (p, i) { %>
+      <a class="project-card" href="<%= p.link || '#' %>">
+        <div class="project-card-top">
+          <span class="project-no"><%= ['其一', '其二', '其三', '其四', '其五', '其六', '其七', '其八'][i] || (i + 1) %></span>
+          <span class="project-status status-<%= p.status %>"><%= p.status %></span>
+        </div>
+        <h3 class="project-name"><%= p.name %></h3>
+        <p class="project-tagline"><%= p.tagline %></p>
+        <p class="project-desc"><%= p.description %></p>
+        <div class="project-tags">
+          <% (p.tags || []).forEach(function (t) { %><span><%= t %></span><% }) %>
+        </div>
+        <span class="project-year-line"><%= p.year %></span>
+      </a>
+    <% }) %>
+  </div>
+</section>

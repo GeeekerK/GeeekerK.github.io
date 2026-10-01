@@ -1,0 +1,64 @@
+<% var pubs = site.data.publications || {}; %>
+<section class="container page-head">
+  <p class="vertical head-vertical"><%= __('publications.vertical') %></p>
+  <div>
+    <p class="eyebrow"><%= __('publications.eyebrow') %></p>
+    <h1 class="page-title"><%= __('publications.title') %></h1>
+    <p class="page-sub"><%= __('publications.sub') %></p>
+  </div>
+</section>
+
+<% if (pubs.papers && pubs.papers.length) { %>
+<section class="container pub-section">
+  <h2 class="section-title"><span class="juan"><%= __('publications.papers') %></span><%= __('publications.papers_title') %> <span class="section-count"><%= pubs.papers.length %></span></h2>
+  <div class="pub-list academic">
+    <% pubs.papers.forEach(function (pub, i) { %>
+      <div class="pub-row">
+        <span class="pub-no"><%= ['其一', '其二', '其三', '其四', '其五', '其六'][pubs.papers.length - 1 - i] || '[' + (pubs.papers.length - i) + ']' %></span>
+        <div class="pub-main">
+          <p class="pub-title"><%= pub.title %></p>
+          <p class="pub-venue"><%= pub.authors %>. <em><%= pub.venue %></em>, <%= pub.year %>.</p>
+        </div>
+        <% if (pub.link) { %><a class="pub-link" href="<%= pub.link %>">PDF →</a><% } %>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<% if (pubs.articles && pubs.articles.length) { %>
+<section class="container pub-section">
+  <h2 class="section-title"><span class="juan"><%= __('publications.articles') %></span><%= __('publications.articles_title') %> <span class="section-count"><%= pubs.articles.length %></span></h2>
+  <div class="pub-list">
+    <% pubs.articles.forEach(function (pub) { %>
+      <div class="pub-row">
+        <span class="pub-year"><%= pub.year %></span>
+        <div class="pub-main">
+          <p class="pub-title"><%= pub.title %></p>
+          <p class="pub-venue"><%= pub.venue %></p>
+        </div>
+        <% if (pub.link) { %><a class="pub-link" href="<%= pub.link %>"><%= __('home.read') %></a><% } %>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<% if (pubs.books && pubs.books.length) { %>
+<section class="section-dark shelf-section">
+  <div class="container">
+    <h2 class="section-title"><span class="juan"><%= __('publications.books') %></span><%= __('publications.books_title') %> <span class="section-count"><%= pubs.books.length %></span></h2>
+    <div class="bookshelf">
+      <% pubs.books.forEach(function (book) { %>
+        <div class="book">
+          <div class="book-cover">
+            <p class="book-cover-title">《<%= book.title %>》</p>
+            <p class="book-cover-author"><%= book.role %> · <%= book.year %></p>
+          </div>
+          <p class="book-publisher"><%= book.publisher %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>

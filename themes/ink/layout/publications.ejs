@@ -1,0 +1,73 @@
+<%
+  var pubs = site.data.publications || {};
+  var books = pubs.books || [];
+  var zhu = books.filter(function (b) { return b.role === '著'; });
+  var yi = books.filter(function (b) { return b.role === '译'; });
+%>
+<section class="shell page-head">
+  <div>
+    <p class="eyebrow">著述 · Publications</p>
+    <h1 class="page-title">著述</h1>
+    <p class="page-sub">著、译、论、文——思考的四种装订方式。</p>
+  </div>
+</section>
+
+<% if (zhu.length) { %>
+<section class="shell-narrow pub-section">
+  <p class="eyebrow">著 · Books Written</p>
+  <% zhu.forEach(function (book) { %>
+    <div class="pub-entry reveal">
+      <span class="pub-no"><%= book.year %></span>
+      <div class="pub-main">
+        <p class="pub-title book-title">《<%= book.title %>》</p>
+        <p class="pub-venue"><%= book.publisher %></p>
+      </div>
+    </div>
+  <% }) %>
+</section>
+<% } %>
+
+<% if (yi.length) { %>
+<section class="shell-narrow pub-section">
+  <p class="eyebrow">译 · Translations</p>
+  <% yi.forEach(function (book) { %>
+    <div class="pub-entry reveal">
+      <span class="pub-no"><%= book.year %></span>
+      <div class="pub-main">
+        <p class="pub-title book-title">《<%= book.title %>》</p>
+        <p class="pub-venue"><%= book.publisher %></p>
+      </div>
+    </div>
+  <% }) %>
+</section>
+<% } %>
+
+<% if (pubs.papers && pubs.papers.length) { %>
+<section class="shell-narrow pub-section">
+  <p class="eyebrow">论 · Papers</p>
+  <% pubs.papers.forEach(function (pub, i) { %>
+    <div class="pub-entry reveal">
+      <span class="pub-no">其<%= ['一', '二', '三', '四', '五', '六'][pubs.papers.length - 1 - i] || (pubs.papers.length - i) %></span>
+      <div class="pub-main">
+        <p class="pub-title"><%= pub.title %></p>
+        <p class="pub-venue"><%= pub.authors %> · <em><%= pub.venue %></em> · <%= pub.year %><% if (pub.link) { %> · <a class="pub-link" href="<%= pub.link %>">PDF</a><% } %></p>
+      </div>
+    </div>
+  <% }) %>
+</section>
+<% } %>
+
+<% if (pubs.articles && pubs.articles.length) { %>
+<section class="shell-narrow pub-section">
+  <p class="eyebrow">文 · Articles</p>
+  <% pubs.articles.forEach(function (pub) { %>
+    <div class="pub-entry reveal">
+      <span class="pub-no"><%= pub.year %></span>
+      <div class="pub-main">
+        <p class="pub-title"><%= pub.title %></p>
+        <p class="pub-venue"><%= pub.venue %><% if (pub.link) { %> · <a class="pub-link" href="<%= pub.link %>">阅读</a><% } %></p>
+      </div>
+    </div>
+  <% }) %>
+</section>
+<% } %>

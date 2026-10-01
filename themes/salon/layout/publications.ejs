@@ -1,0 +1,61 @@
+<% var pubs = site.data.publications || {}; %>
+<section class="container page-head">
+  <p class="eyebrow">Publications</p>
+  <h1 class="page-title">著作</h1>
+  <p class="page-sub">论文、文章与书——思考的三种装订方式。</p>
+</section>
+
+<% if (pubs.papers && pubs.papers.length) { %>
+<section class="container pub-section">
+  <h2 class="section-title">论文 <span class="section-count"><%= pubs.papers.length %></span></h2>
+  <div class="pub-list academic">
+    <% pubs.papers.forEach(function (pub, i) { %>
+      <div class="pub-row">
+        <span class="pub-no">[<%= pubs.papers.length - i %>]</span>
+        <div class="pub-main">
+          <p class="pub-title"><%= pub.title %></p>
+          <p class="pub-venue"><%= pub.authors %>. <em><%= pub.venue %></em>, <%= pub.year %>.</p>
+        </div>
+        <% if (pub.link) { %><a class="pub-link" href="<%= pub.link %>">PDF →</a><% } %>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<% if (pubs.articles && pubs.articles.length) { %>
+<section class="container pub-section">
+  <h2 class="section-title">文章 <span class="section-count"><%= pubs.articles.length %></span></h2>
+  <div class="pub-list">
+    <% pubs.articles.forEach(function (pub) { %>
+      <div class="pub-row">
+        <span class="pub-year"><%= pub.year %></span>
+        <div class="pub-main">
+          <p class="pub-title"><%= pub.title %></p>
+          <p class="pub-venue"><%= pub.venue %></p>
+        </div>
+        <% if (pub.link) { %><a class="pub-link" href="<%= pub.link %>">阅读 →</a><% } %>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<% if (pubs.books && pubs.books.length) { %>
+<section class="section-dark shelf-section">
+  <div class="container">
+    <h2 class="section-title">图书 <span class="section-count"><%= pubs.books.length %></span></h2>
+    <div class="bookshelf">
+      <% pubs.books.forEach(function (book) { %>
+        <div class="book">
+          <div class="book-cover">
+            <p class="book-cover-title"><%= book.title %></p>
+            <p class="book-cover-author"><%= book.role %> · <%= book.year %></p>
+          </div>
+          <p class="book-publisher"><%= book.publisher %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>

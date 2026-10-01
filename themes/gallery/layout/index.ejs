@@ -1,0 +1,42 @@
+<%
+  var latestPosts = site.posts.sort('-date').limit(5);
+  var menuKeys = Object.keys(theme.menu);
+%>
+
+<!-- 门厅：巨型声明 -->
+<section class="hero shell">
+  <p class="caption reveal">Personal Studio — est. 2026</p>
+  <h1 class="hero-title reveal"><%= theme.statement %></h1>
+  <p class="hero-sub reveal"><%= theme.author %> · <%= theme.tagline %></p>
+</section>
+
+<!-- 目录索引 -->
+<nav class="index-toc shell" aria-label="站点目录">
+  <% menuKeys.forEach(function (label, i) { %>
+    <a class="toc-row reveal" href="<%- url_for(theme.menu[label]) %>">
+      <span class="toc-no"><%= String(i + 1).padStart(2, '0') %></span>
+      <span class="toc-label"><%= label %></span>
+      <span class="toc-en">
+        <%= ['Blog', 'Projects', 'Publications', 'About', 'Contact'][i] || '' %>
+      </span>
+      <span class="toc-arrow">→</span>
+    </a>
+  <% }) %>
+</nav>
+
+<!-- 最新写作：窄栏展签 -->
+<section class="latest shell-wide">
+  <p class="caption reveal">最新写作 — Recent Writing</p>
+  <div class="latest-list">
+    <% latestPosts.each(function (post) { %>
+      <a class="latest-row reveal" href="<%- url_for(post.path) %>">
+        <span class="latest-title"><%= post.title %></span>
+        <span class="latest-meta">
+          <%= post.categories.length ? post.categories.first().name : '随笔' %>
+          ·
+          <%= date(post.date, 'YYYY.MM.DD') %>
+        </span>
+      </a>
+    <% }) %>
+  </div>
+</section>

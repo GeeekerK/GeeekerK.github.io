@@ -1,0 +1,68 @@
+<%
+  var isAnnual = page.categories && page.categories.some(function (c) { return c.name === '年报'; });
+%>
+<% if (isAnnual) { %>
+<!-- ============ 年报长卷：横向滚动，每章一格 ============ -->
+<article class="scroll-article">
+  <div class="scroll-viewport" id="scroll-viewport">
+    <!-- 卷首 -->
+    <section class="scroll-panel scroll-cover">
+      <p class="vertical scroll-motto"><%= theme.vertical_motto %></p>
+      <div class="scroll-cover-main">
+        <p class="eyebrow">岁次<%= ganzhi(page.date) %> · 年报</p>
+        <h1 class="scroll-title"><%= page.title %></h1>
+        <p class="scroll-meta"><%= ink_date(page.date) %> 封卷</p>
+        <span class="seal seal-l"><%= theme.seal_char %></span>
+        <p class="scroll-hint">横向展卷 →</p>
+      </div>
+    </section>
+
+    <!-- 正文源：由 JS 按章节切分为格 -->
+    <div class="scroll-source" id="scroll-source" hidden>
+      <%- page.content %>
+    </div>
+
+    <!-- 卷末 -->
+    <section class="scroll-panel scroll-end">
+      <div class="scroll-end-main">
+        <p class="scroll-end-text">卷终</p>
+        <span class="seal"><%= theme.seal_char %></span>
+        <nav class="article-nav">
+          <% if (page.prev) { %><a href="<%- url_for(page.prev.path) %>">← <%= page.prev.title %></a><% } else { %><span></span><% } %>
+          <% if (page.next) { %><a href="<%- url_for(page.next.path) %>"><%= page.next.title %> →</a><% } %>
+        </nav>
+        <a class="scroll-back" href="<%- url_for('/archives/') %>">返回日志</a>
+      </div>
+    </section>
+  </div>
+</article>
+<% } else { %>
+<article class="article shell-narrow">
+  <header class="article-header">
+    <p class="eyebrow"><%= page.categories.length ? page.categories.first().name : '随笔' %></p>
+    <h1 class="article-title"><%= page.title %></h1>
+    <p class="article-meta">
+      <%= ink_date(page.date) %>
+      <% if (page.tags && page.tags.length) { %>
+        ·
+        <% page.tags.each(function (tag) { %>
+          <a class="meta-link" href="<%- url_for(tag.path) %>"><%= tag.name %></a>
+        <% }) %>
+      <% } %>
+    </p>
+  </header>
+
+  <div class="article-content">
+    <%- page.content %>
+  </div>
+
+  <nav class="article-nav">
+    <% if (page.prev) { %>
+      <a href="<%- url_for(page.prev.path) %>">← <%= page.prev.title %></a>
+    <% } else { %><span></span><% } %>
+    <% if (page.next) { %>
+      <a href="<%- url_for(page.next.path) %>"><%= page.next.title %> →</a>
+    <% } %>
+  </nav>
+</article>
+<% } %>

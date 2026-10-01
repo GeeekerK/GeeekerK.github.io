@@ -1,0 +1,21 @@
+# Theme: gallery — 白色画廊 · Gallery White
+# Museum-white canvas, hairline rules, oversized serif display,
+# numbered index navigation. Color belongs to the content only.
+
+author: Loki
+email: hi@loki.blog
+tagline: 写作、构建与出版。
+statement: 一个写作者与建造者的工作室。
+
+menu:
+  博客: /archives/
+  项目: /projects/
+  著作: /publications/
+  关于: /about/
+  联系: /contact/
+
+social:
+  GitHub: https://github.com/loki
+  X: https://x.com/loki
+  知乎: https://zhihu.com/people/loki
+  RSS: /atom.xml

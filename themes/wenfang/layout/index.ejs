@@ -1,0 +1,109 @@
+<%
+  var featuredProjects = (site.data.projects || []).filter(function (p) { return p.featured; }).slice(0, 3);
+  var pubs = site.data.publications || {};
+  var recentPubs = (pubs.papers || []).concat(pubs.articles || []).slice(0, 3);
+  var _lang = page.lang || 'zh-CN';
+  var _isDefault = _lang === config.language[0];
+  var _prefix = _isDefault ? '' : '/' + _lang;
+  var langPosts = site.posts.toArray().filter(function (p) { return (p.lang || 'zh-CN') === _lang; })
+    .sort(function (a, b) { return b.date - a.date; });
+  var latestPosts = langPosts.slice(0, 4);
+%>
+
+<!-- 卷首 Hero -->
+<section class="hero">
+  <canvas id="grain-canvas" aria-hidden="true"></canvas>
+  <div class="container hero-inner">
+    <p class="vertical hero-motto"><%= theme.vertical_motto %></p>
+    <div class="hero-main">
+      <p class="eyebrow"><%= __('hero.eyebrow') %></p>
+      <h1 class="hero-title"><%= __('hero.title') %></h1>
+      <p class="hero-sub"><%= __('hero.sub') %></p>
+      <div class="hero-rules" aria-hidden="true"><span></span><span></span></div>
+      <div class="hero-stats">
+        <span><b><%= langPosts.length %></b> <%= __('hero.stat_posts') %></span>
+        <span><b><%= (site.data.projects || []).length %></b> <%= __('hero.stat_projects') %></span>
+        <span><b><%= (pubs.papers || []).length + (pubs.articles || []).length + (pubs.books || []).length %></b> <%= __('hero.stat_works') %></span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="<%- url_for(_prefix + '/projects/') %>"><%= __('hero.btn_projects') %></a>
+        <a class="btn btn-ghost" href="<%- url_for(_prefix + '/about/') %>"><%= __('hero.btn_about') %></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 卷一 · 近期日志 -->
+<section class="section container">
+  <div class="section-head">
+    <h2 class="section-title"><span class="juan"><%= __('home.vol1') %></span><%= __('home.vol1_title') %></h2>
+    <a class="section-more" href="<%- url_for(_prefix + '/archives/') %>"><%= __('home.all_posts') %></a>
+  </div>
+  <div class="writing-list">
+    <% var kindLabel = { '日记': __('filter.diary'), '日記': __('filter.diary'), '周报': __('filter.weekly'), '週報': __('filter.weekly'), '年报': __('filter.annual'), '年報': __('filter.annual') }; %>
+    <% latestPosts.forEach(function (post) { %>
+      <a class="writing-row" href="<%- url_for(post.path) %>">
+        <span class="writing-kind"><%= post.categories.length ? (kindLabel[post.categories.first().name] || post.categories.first().name) : __('filter.other') %></span>
+        <span class="writing-title"><%= post.title %></span>
+        <time class="writing-date"><%= date(post.date, 'YYYY年M月D日') %></time>
+      </a>
+    <% }) %>
+  </div>
+</section>
+
+<!-- 卷二 · 造物选 -->
+<% if (featuredProjects.length) { %>
+<section class="section container">
+  <div class="section-head">
+    <h2 class="section-title"><span class="juan"><%= __('home.vol2') %></span><%= __('home.vol2_title') %></h2>
+    <a class="section-more" href="<%- url_for(_prefix + '/projects/') %>"><%= __('home.all_projects') %></a>
+  </div>
+  <div class="project-grid">
+    <% featuredProjects.forEach(function (p, i) { %>
+      <a class="project-card" href="<%= p.link || '#' %>">
+        <div class="project-card-top">
+          <span class="project-no"><%= ['其一', '其二', '其三', '其四', '其五'][i] || (i + 1) %></span>
+          <span class="project-status status-<%= p.status %>"><%= p.status %></span>
+        </div>
+        <h3 class="project-name"><%= p.name %></h3>
+        <p class="project-tagline"><%= p.tagline %></p>
+        <div class="project-tags">
+          <% (p.tags || []).forEach(function (t) { %><span><%= t %></span><% }) %>
+        </div>
+      </a>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<!-- 卷三 · 著述（深色章节） -->
+<% if (recentPubs.length) { %>
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title"><span class="juan"><%= __('home.vol3') %></span><%= __('home.vol3_title') %></h2>
+      <a class="section-more" href="<%- url_for(_prefix + '/publications/') %>"><%= __('home.all_works') %></a>
+    </div>
+    <div class="pub-list">
+      <% recentPubs.forEach(function (pub) { %>
+        <div class="pub-row">
+          <span class="pub-year"><%= pub.year %></span>
+          <div class="pub-main">
+            <p class="pub-title"><%= pub.title %></p>
+            <p class="pub-venue"><%= pub.venue %></p>
+          </div>
+          <% if (pub.link) { %><a class="pub-link" href="<%= pub.link %>"><%= __('home.read') %></a><% } %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- 尾声 -->
+<section class="section container cta-section">
+  <span class="seal seal-l"><%= theme.seal_char %></span>
+  <h2 class="cta-title"><%= __('cta.title') %></h2>
+  <p class="cta-sub"><%= __('cta.sub') %></p>
+  <a class="btn btn-primary" href="mailto:<%= theme.email %>"><%= theme.email %></a>
+</section>

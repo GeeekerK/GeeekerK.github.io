@@ -1,0 +1,59 @@
+<% if (page.tag || page.category) { %>
+  <section class="shell page-head">
+    <p class="caption"><%= page.tag ? 'Tag' : 'Category' %></p>
+    <h1 class="page-title"><%= page.tag || page.category %></h1>
+    <p class="page-sub"><%= page.posts.length %> 篇</p>
+  </section>
+  <section class="shell-narrow">
+    <div class="latest-list">
+      <% page.posts.each(function (post) { %>
+        <a class="latest-row" href="<%- url_for(post.path) %>">
+          <span class="latest-title"><%= post.title %></span>
+          <span class="latest-meta"><%= date(post.date, 'YYYY.MM.DD') %></span>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+<% } else { %>
+  <section class="shell page-head">
+    <p class="caption">Blog — 写作存档</p>
+    <h1 class="page-title">写作</h1>
+    <p class="page-sub">日记是呼吸，周报是节奏，年报是回望。共 <%= page.posts.length %> 篇。</p>
+    <div class="blog-filter" id="blog-filter">
+      <button class="filter-btn active" data-cat="all">全部</button>
+      <button class="filter-btn" data-cat="日记">日记</button>
+      <button class="filter-btn" data-cat="周报">周报</button>
+      <button class="filter-btn" data-cat="年报">年报</button>
+      <button class="filter-btn" data-cat="other">其他</button>
+    </div>
+  </section>
+
+  <section class="shell timeline-section">
+    <% var lastYear = null; var idx = 0; %>
+    <% page.posts.each(function (post) { %>
+      <% var cat = post.categories.length ? post.categories.first().name : 'other'; %>
+      <% var key = ['日记', '周报', '年报'].indexOf(cat) >= 0 ? cat : 'other'; %>
+      <% var y = date(post.date, 'YYYY'); %>
+      <% if (y !== lastYear) { lastYear = y; %>
+        <h2 class="timeline-year" data-year-row><%= y %></h2>
+      <% } %>
+      <% idx++; %>
+      <a class="archive-row reveal" data-cat="<%= key %>" href="<%- url_for(post.path) %>">
+        <span class="archive-no"><%= String(idx).padStart(2, '0') %></span>
+        <span class="archive-title"><%= post.title %></span>
+        <span class="archive-meta"><%= cat === 'other' ? '随笔' : cat %> · <%= date(post.date, 'MM.DD') %></span>
+      </a>
+    <% }) %>
+  </section>
+
+  <% if (site.tags.length) { %>
+    <section class="shell tags-section">
+      <p class="caption">标签 — Tags</p>
+      <div class="tag-cloud">
+        <% site.tags.sort('length', -1).each(function (tag) { %>
+          <a class="tag" href="<%- url_for(tag.path) %>"><%= tag.name %><span class="tag-count"><%= tag.length %></span></a>
+        <% }) %>
+      </div>
+    </section>
+  <% } %>
+<% } %>

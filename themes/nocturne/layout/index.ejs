@@ -1,0 +1,107 @@
+<%
+  var featuredProjects = (site.data.projects || []).filter(function (p) { return p.featured; }).slice(0, 3);
+  var pubs = site.data.publications || {};
+  var recentPubs = (pubs.papers || []).concat(pubs.articles || []).slice(0, 3);
+  var latestPosts = site.posts.sort('-date').limit(4);
+%>
+
+<!-- Hero：全屏 + 状态行 -->
+<section class="hero">
+  <div class="shell hero-inner">
+    <p class="mono hero-eyebrow">/// PERSONAL NODE · ONLINE SINCE 2026</p>
+    <h1 class="hero-title"><%= config.title %><span class="grad-text">.</span></h1>
+    <p class="hero-tagline"><%= theme.tagline %></p>
+    <p class="hero-sub mono"><%= theme.hero_line %></p>
+    <div class="hero-stats mono">
+      <div class="hstat"><span class="hstat-num grad-text"><%= site.posts.length %></span><span class="hstat-label">POSTS</span></div>
+      <div class="hstat"><span class="hstat-num grad-text"><%= (site.data.projects || []).length %></span><span class="hstat-label">PROJECTS</span></div>
+      <div class="hstat"><span class="hstat-num grad-text"><%= (pubs.papers || []).length + (pubs.articles || []).length + (pubs.books || []).length %></span><span class="hstat-label">WORKS</span></div>
+    </div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="<%- url_for('/projects/') %>">进入项目画廊 →</a>
+      <a class="btn btn-ghost mono" href="<%- url_for('/about/') %>">$ whoami</a>
+    </div>
+  </div>
+  <div class="hero-scroll mono" aria-hidden="true">SCROLL ↓</div>
+</section>
+
+<!-- 最新写作：commit 链 -->
+<section class="section shell">
+  <div class="section-head">
+    <h2 class="section-title mono">LATEST_COMMITS <span class="grad-text">//</span> 写作</h2>
+    <a class="section-more mono" href="<%- url_for('/archives/') %>">view all →</a>
+  </div>
+  <div class="commit-list">
+    <% latestPosts.each(function (post) { %>
+      <a class="commit-row" href="<%- url_for(post.path) %>">
+        <span class="commit-node"></span>
+        <span class="commit-hash mono"><%= date(post.date, 'YYMMDD') %></span>
+        <span class="commit-title"><%= post.title %></span>
+        <span class="commit-cat mono"><%= post.categories.length ? post.categories.first().name : '随笔' %></span>
+      </a>
+    <% }) %>
+  </div>
+</section>
+
+<!-- 精选项目 -->
+<% if (featuredProjects.length) { %>
+<section class="section shell">
+  <div class="section-head">
+    <h2 class="section-title mono">FEATURED <span class="grad-text">//</span> 项目</h2>
+    <a class="section-more mono" href="<%- url_for('/projects/') %>">gallery →</a>
+  </div>
+  <div class="project-grid">
+    <% featuredProjects.forEach(function (p, i) { %>
+      <a class="exhibit-card" href="<%= p.link || '#' %>">
+        <div class="exhibit-top mono">
+          <span>EXHIBIT_<%= String(i + 1).padStart(2, '0') %></span>
+          <span class="exhibit-status status-<%= p.status %>"><%= p.status %></span>
+        </div>
+        <h3 class="exhibit-name"><%= p.name %></h3>
+        <p class="exhibit-tagline"><%= p.tagline %></p>
+        <div class="exhibit-tags mono">
+          <% (p.tags || []).forEach(function (t) { %><span>#<%= t %></span><% }) %>
+        </div>
+        <span class="exhibit-year mono"><%= p.year %></span>
+      </a>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<!-- 近期著作 -->
+<% if (recentPubs.length) { %>
+<section class="section shell">
+  <div class="section-head">
+    <h2 class="section-title mono">WORKS <span class="grad-text">//</span> 著作</h2>
+    <a class="section-more mono" href="<%- url_for('/publications/') %>">all works →</a>
+  </div>
+  <div class="pub-list">
+    <% recentPubs.forEach(function (pub) { %>
+      <div class="pub-row">
+        <span class="pub-year mono"><%= pub.year %></span>
+        <div class="pub-main">
+          <p class="pub-title"><%= pub.title %></p>
+          <p class="pub-venue"><%= pub.venue %></p>
+        </div>
+        <% if (pub.link) { %><a class="pub-link mono" href="<%= pub.link %>">read →</a><% } %>
+      </div>
+    <% }) %>
+  </div>
+</section>
+<% } %>
+
+<!-- 终端 CTA -->
+<section class="section shell">
+  <div class="terminal">
+    <div class="terminal-bar">
+      <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+      <span class="terminal-title mono">loki@node ~</span>
+    </div>
+    <div class="terminal-body mono">
+      <p><span class="term-prompt">$</span> ping <%= theme.email %></p>
+      <p class="term-out">PONG — 通常 48 小时内回复。</p>
+      <p><span class="term-prompt">$</span> <a class="term-link" href="mailto:<%= theme.email %>">send-message --to "<%= theme.email %>"</a><span class="term-cursor">▊</span></p>
+    </div>
+  </div>
+</section>

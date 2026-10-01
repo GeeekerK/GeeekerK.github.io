@@ -1,0 +1,39 @@
+<%
+  var isAnnual = page.categories && page.categories.some(function (c) { return c.name === '年报'; });
+%>
+<article class="article container<%= isAnnual ? ' article-annual' : '' %>">
+  <header class="article-header<%= isAnnual ? ' chapter-dark' : '' %>">
+    <div class="article-header-inner container">
+      <div class="article-meta">
+        <time><%= date(page.date, 'YYYY.MM.DD') %></time>
+        <% if (page.categories && page.categories.length) { %>
+          <span class="dot-sep">·</span>
+          <% page.categories.each(function (cat) { %>
+            <a class="meta-link" href="<%- url_for(cat.path) %>"><%= cat.name %></a>
+          <% }) %>
+        <% } %>
+      </div>
+      <h1 class="article-title"><%= page.title %></h1>
+      <% if (page.tags && page.tags.length) { %>
+        <div class="article-tags">
+          <% page.tags.each(function (tag) { %>
+            <a class="tag" href="<%- url_for(tag.path) %>"><%= tag.name %></a>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+  </header>
+
+  <div class="article-content">
+    <%- page.content %>
+  </div>
+
+  <nav class="article-nav">
+    <% if (page.prev) { %>
+      <a class="article-nav-link" href="<%- url_for(page.prev.path) %>">← <%= page.prev.title %></a>
+    <% } else { %><span></span><% } %>
+    <% if (page.next) { %>
+      <a class="article-nav-link" href="<%- url_for(page.next.path) %>"><%= page.next.title %> →</a>
+    <% } %>
+  </nav>
+</article>

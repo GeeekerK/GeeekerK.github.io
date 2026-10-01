@@ -1,0 +1,79 @@
+menu:
+  home: ホーム
+  archives: ログ
+  projects: 作品
+  publications: 著作
+  about: 略歴
+  contact: 連絡
+lang_switch: 中文
+lang_switch_title: 中国語に切り替え
+hero:
+  eyebrow: 丙午の歳 · 2022年創刊
+  title: ゆっくり、しかし正確に。
+  sub: 王伟 — 書くこと、作ること、学ぶこと。
+  stat_posts: 件のログ
+  stat_projects: 件の作品
+  stat_works: 点の著作
+  btn_projects: 作品を見る
+  btn_about: 略歴を読む →
+home:
+  vol1: 巻一
+  vol1_title: 最近のログ
+  vol2: 巻二
+  vol2_title: 作品選
+  vol3: 巻三
+  vol3_title: 著作
+  all_posts: すべてのログ →
+  all_projects: ギャラリー →
+  all_works: すべての著作 →
+  read: 読む →
+cta:
+  title: 便りを待っている
+  sub: 仕事の依頼、寄稿、あるいは挨拶だけでも、すべて歓迎です。
+footer:
+  tagline: 書くこと、作ること、学ぶこと。
+  meta: © %s–%s %s · %s 年から書き続ける · 紙と墨を骨とし · Hexo で生成
+filter:
+  all: すべて
+  diary: 日記
+  weekly: 週報
+  annual: 年報
+  other: その他
+archives:
+  eyebrow: ログ · Archive
+  title: ログ
+  sub: 日記は呼吸、週報はリズム、年報は回顧。全 %s 件。
+  tags: 附
+  tags_title: タグ
+  vertical: 日に知る 其の亡き所
+  posts_unit: 件
+annual:
+  label: 年報
+  vertical: "%s年 · 年末の回顧"
+projects:
+  eyebrow: 作品 · Works
+  title: 作品
+  sub: "%s 点の作品、すべて時間の手仕事。"
+  vertical: 物を作りて 道を載す
+publications:
+  eyebrow: 著作 · Publications
+  title: 著作
+  sub: 論文、文章、書籍——思考の三つの製本。
+  vertical: 書を著して 言を立つ
+  papers: 論
+  papers_title: 論文
+  articles: 文
+  articles_title: 文章
+  books: 書
+  books_title: 書籍
+contact:
+  eyebrow: 連絡 · Contact
+  title: 連絡
+  sub: 扉はいつも開いている。手紙はいつでも届く。
+  vertical: 雁 長く飛ぶ
+  email: メール
+  email_note: 通常48時間以内に返信します。仕事の話は要件を直接どうぞ。
+  socials: 足跡
+  cv: 履歴
+  cv_note: 経歴・スキル・著作をまとめた、更新し続ける CV。
+  cv_btn: CVを見る →

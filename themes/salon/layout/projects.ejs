@@ -1,0 +1,26 @@
+<% var projects = site.data.projects || []; %>
+<section class="container page-head">
+  <p class="eyebrow">Projects</p>
+  <h1 class="page-title">项目画廊</h1>
+  <p class="page-sub">做东西是最好的学习方式。这里陈列着 <%= projects.length %> 件展品。</p>
+</section>
+
+<section class="container">
+  <div class="project-grid gallery">
+    <% projects.forEach(function (p, i) { %>
+      <a class="project-card" href="<%= p.link || '#' %>">
+        <div class="project-card-top">
+          <span class="project-no"><%= String(i + 1).padStart(2, '0') %></span>
+          <span class="project-status status-<%= p.status %>"><%= p.status %></span>
+        </div>
+        <h3 class="project-name"><%= p.name %></h3>
+        <p class="project-tagline"><%= p.tagline %></p>
+        <p class="project-desc"><%= p.description %></p>
+        <div class="project-tags">
+          <% (p.tags || []).forEach(function (t) { %><span><%= t %></span><% }) %>
+        </div>
+        <span class="project-year-line"><%= p.year %></span>
+      </a>
+    <% }) %>
+  </div>
+</section>

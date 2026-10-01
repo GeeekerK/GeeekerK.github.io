@@ -3,15 +3,17 @@
 
 # Site
 title: LOKI
-subtitle: ''
-description: 'Building in public · Web3 · Code · Thoughts'
-keywords: web3, blog, code, crypto
-author: Loki
-language: zh-CN
+subtitle: '记录生活的点点滴滴'
+description: '你想拥有你从未拥有的东西，那就要去做你从未做过的事。'
+keywords: CTF, 网络安全, blog, code
+author: 王伟
+language:
+  - zh-CN
+  - ja
 timezone: 'Asia/Shanghai'
 
 # URL
-url: http://localhost:7100
+url: https://geeekerk.github.io
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -82,8 +84,31 @@ per_page: 10
 pagination_dir: page
 
 # Extensions
-theme: loki
+theme: wenfang
+
+# SEO：OG 分享卡片
+open_graph:
+  twitter_card: summary
+  image: /images/og-cover.png
+
+# SEO：站点地图
+sitemap:
+  path: sitemap.xml
+
+# SEO：RSS 订阅
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content: true
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
 
 # Deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/GeeekerK/GeeekerK.github.io.git
+  branch: main
