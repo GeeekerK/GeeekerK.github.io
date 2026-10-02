@@ -17,7 +17,20 @@ sync_from_feishu.py — 把飞书云文档同步为 Hexo 博客文章
   建议每篇文档标题按以下格式命名，脚本会自动解析 front-matter：
     2026-10-01-我的第一篇博客          -> title: 我的第一篇博客, date: 2026-10-01
     我的第二篇博客                     -> title: 我的第二篇博客, date: 当天
-  分类/标签暂时不自动生成，可在生成的 md 里手动补充，后续可扩展多维表格方案。
+
+分类（categories）
+------------------
+  按文档所在的子文件夹自动归类，例如：
+    博客文章/日记/xxx  -> categories: [日记]
+    博客文章/周报/xxx  -> categories: [周报]
+  直接放在「博客文章」根目录的文档：categories 为空。
+  在飞书里把文档拖进/拖出子文件夹即可改分类，无需改文档内容。
+
+标签（tags）
+------------
+  在文档正文最开头单独一行写（脚本会识别并从正文中移除）：
+    标签：飞书同步, Hexo, wenfang主题
+  多个标签用中英文逗号或顿号分隔。不写这行则 tags 为空。
 
 环境变量
 ========
@@ -155,6 +168,29 @@ def list_folder_files(folder_token, token):
     return files
 
 
+def list_folder_tree(folder_token, token, category=""):
+    """递归列出文件夹下所有 docx。
+
+    返回 [{name, token, url, category}]；category 是文档所在一级子文件夹名，
+    根目录下的文档 category 为空字符串。
+    """
+    result = []
+    for f in list_folder_files(folder_token, token):
+        ftype = f.get("type")
+        if ftype == "docx":
+            result.append({
+                "name": f.get("name", ""),
+                "token": f.get("token", ""),
+                "url": f.get("url", ""),
+                "category": category,
+            })
+        elif ftype == "folder":
+            sub = (f.get("name") or "").strip()
+            if sub:
+                result.extend(list_folder_tree(f["token"], token, sub))
+    return result
+
+
 def get_document_blocks(document_id, token):
     """获取整篇文档的所有块（分页拉全）"""
     blocks, page_token = [], ""
@@ -238,8 +274,10 @@ def text_from_elements(elements):
 
 
 def block_text(block):
-    """从块的 text/code/quote/todo 等结构里取文本"""
-    for key in ("text", "code", "quote", "todo"):
+    """从 block 的 text/heading*/bullet/ordered/code/quote/todo 等结构里取文本"""
+    for key in ("text", "heading1", "heading2", "heading3", "heading4",
+                "heading5", "heading6", "heading7", "heading8", "heading9",
+                "bullet", "ordered", "code", "quote", "todo"):
         obj = block.get(key)
         if obj and isinstance(obj, dict):
             els = obj.get("elements")
@@ -395,6 +433,7 @@ class DocConverter:
 # 标题解析 / front-matter
 # ---------------------------------------------------------------------------
 DATE_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})[-_\s]+(.*)$")
+TAG_LINE_RE = re.compile(r"^标签[:：]\s*(.+?)\s*$")
 
 
 def parse_title(name):
@@ -414,8 +453,37 @@ def slugify(title, date):
     return "%s-%s" % (date, clean)
 
 
-def make_front_matter(title, date):
-    return "---\ntitle: %s\ndate: %s 00:00:00\ncategories: []\ntags: []\n---\n\n" % (title, date)
+def extract_tags(body_lines):
+    """在正文开头找「标签：xxx, yyy」行，返回 (tags, remaining_lines)。
+
+    只检查跳过空行后的第一行；找不到则 tags 为空、原文不动。
+    """
+    rest = list(body_lines)
+    i = 0
+    while i < len(rest) and not rest[i].strip():
+        i += 1
+    if i < len(rest):
+        m = TAG_LINE_RE.match(rest[i].strip())
+        if m:
+            tags = [t.strip() for t in re.split(r"[,，、]", m.group(1)) if t.strip()]
+            return tags, rest[:i] + rest[i + 1:]
+    return [], rest
+
+
+def _yaml_list(items):
+    """把列表格式化成 YAML flow list，含中文不需要引号"""
+    return "[" + ", ".join(items) + "]" if items else "[]"
+
+
+def make_front_matter(title, date, categories=None, tags=None):
+    return (
+        "---\n"
+        "title: %s\n"
+        "date: %s 00:00:00\n"
+        "categories: %s\n"
+        "tags: %s\n"
+        "---\n\n" % (title, date, _yaml_list(categories or []), _yaml_list(tags or []))
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -432,10 +500,9 @@ def main():
     print("== 获取 tenant_access_token ==")
     token = get_tenant_token(app_id, app_secret)
 
-    print("== 列出飞书文件夹文档（folder_token=%s）==" % (folder_token or "我的空间根目录"))
-    files = list_folder_files(folder_token, token)
-    docs = [f for f in files if f.get("type") == "docx"]
-    print("共 %s 个文件，其中文档 %s 篇" % (len(files), len(docs)))
+    print("== 列出飞书文件夹文档（folder_token=%s，含子文件夹）==" % (folder_token or "我的空间根目录"))
+    docs = list_folder_tree(folder_token, token)
+    print("共文档 %s 篇" % len(docs))
     if not docs:
         print("没有找到文档，结束。")
         return 0
@@ -446,19 +513,24 @@ def main():
     for doc in docs:
         name = doc.get("name", "")
         document_id = doc.get("token", "")
-        url = doc.get("url", "")
+        category = doc.get("category", "")
         if not document_id:
             failed.append((name, "缺少 token"))
             continue
-        print("-- 处理: %s" % name)
+        cat_desc = ("（分类: %s）" % category) if category else "（根目录/未分类）"
+        print("-- 处理: %s %s" % (name, cat_desc))
         try:
             blocks = get_document_blocks(document_id, token)
             date, title = parse_title(name)
             slug = slugify(title, date)
             converter = DocConverter(document_id, token, slug)
             body_lines = converter.build(blocks)
+            tags, body_lines = extract_tags(body_lines)
+            if tags:
+                print("  提取标签: %s" % ", ".join(tags))
+            categories = [category] if category else []
             body = "\n\n".join(body_lines).strip() + "\n"
-            content = make_front_matter(title, date) + body
+            content = make_front_matter(title, date, categories, tags) + body
             dest = os.path.join(posts_dir(), slug + ".md")
             if os.path.exists(dest):
                 with open(dest, "r", encoding="utf-8") as f:
