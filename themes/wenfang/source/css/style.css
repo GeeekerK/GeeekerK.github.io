@@ -539,6 +539,59 @@ a { color: inherit; text-decoration: none; }
 .contact-arrow { color: var(--meta); }
 .cv-block .btn { margin-top: 18px; }
 
+/* ---------- contact profile ---------- */
+.profile-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.profile-avatar-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 18px;
+}
+.profile-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-warm);
+}
+.profile-badge {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--border-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+.profile-name {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--fg);
+  line-height: 1.2;
+}
+.profile-handle {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: 4px;
+  letter-spacing: 0.03em;
+}
+.profile-bio {
+  font-size: 0.92rem;
+  color: var(--fg-2);
+  margin-top: 16px;
+  line-height: 1.7;
+}
+
 /* ---------- article ---------- */
 .article { padding: 92px 28px; }
 .article-annual { max-width: none; padding: 0; }
