@@ -10,7 +10,7 @@ lang_switch_title: 切换到日本語
 hero:
   eyebrow: 岁次丙午 · 卷宗始于壬寅年
   title: 缓慢但正确地做事。
-  sub: 王伟 — 著文、造物、问学。
+  sub: 著文、造物、问学。
   stat_posts: 篇日志
   stat_projects: 件造物
   stat_works: 种著述
@@ -32,7 +32,7 @@ cta:
   sub: 合作、约稿、或者只是打个招呼，都欢迎。
 footer:
   tagline: 著文、造物、问学。
-  meta: © %s–%s %s · 自 %s 年写字 · 纸墨为骨 · Hexo 静态生成
+  meta: © %s–%s %s · 纸墨为骨 · HEXO
 filter:
   all: 全部
   diary: 日记
