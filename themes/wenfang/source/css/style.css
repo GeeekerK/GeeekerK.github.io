@@ -604,19 +604,55 @@ a { color: inherit; text-decoration: none; }
   border-radius: 5px;
 }
 .article-content pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.75;
+}
+.article-content figure.highlight {
   margin: 1.8em 0;
-  padding: 20px 22px;
+  padding: 18px 22px;
   background: #1c1c1a;
   border-radius: var(--radius);
   overflow-x: auto;
+  border: none;
 }
+.article-content figure.highlight table {
+  margin: 0;
+  border: none;
+  width: auto;
+  border-collapse: separate;
+}
+.article-content figure.highlight td.code {
+  padding: 0;
+  border: none;
+}
+.article-content figure.highlight pre,
+.article-content figure.highlight .line {
+  color: #d4d3c8;
+  background: transparent;
+}
+.article-content figure.highlight .comment,
+.article-content figure.highlight .hljs-comment { color: #7c7b73; font-style: italic; }
+.article-content figure.highlight .keyword,
+.article-content figure.highlight .selector-tag,
+.article-content figure.highlight .hljs-keyword { color: #d97757; }
+.article-content figure.highlight .string,
+.article-content figure.highlight .attr,
+.article-content figure.highlight .hljs-string { color: #a8b99a; }
+.article-content figure.highlight .number,
+.article-content figure.highlight .literal,
+.article-content figure.highlight .hljs-number { color: #d9a05b; }
+.article-content figure.highlight .title,
+.article-content figure.highlight .name,
+.article-content figure.highlight .hljs-title { color: #9db4c0; }
+.article-content figure.highlight .built_in,
+.article-content figure.highlight .hljs-built_in { color: #c2b280; }
+/* 兼容无 figure 包裹的裸 pre（行内 code 块） */
 .article-content pre code { background: none; border: none; padding: 0; color: #d4d3c8; font-size: 0.85rem; line-height: 1.75; }
-.hljs-keyword, .hljs-selector-tag { color: #d97757; }
-.hljs-string, .hljs-attr { color: #a8b99a; }
-.hljs-comment { color: #75746d; font-style: italic; }
-.hljs-number, .hljs-literal { color: #d9a05b; }
-.hljs-title, .hljs-name { color: #9db4c0; }
-.hljs-built_in { color: #c2b280; }
 
 .article-content table { width: 100%; border-collapse: collapse; margin: 1.8em 0; font-size: 0.92rem; }
 .article-content th, .article-content td { padding: 11px 14px; border: 1px solid var(--border-warm); text-align: left; }
