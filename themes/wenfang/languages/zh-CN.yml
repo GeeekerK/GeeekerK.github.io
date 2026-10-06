@@ -62,10 +62,14 @@ publications:
   vertical: 著书以立言
   papers: 论
   papers_title: 论文
-  articles: 文
-  articles_title: 文章
   books: 书
   books_title: 图书
+  articles: 文
+  articles_title: 文章
+  podcasts: 音
+  podcasts_title: 播客
+  videos: 影
+  videos_title: 视频
 contact:
   eyebrow: 雁书 · Contact
   title: 雁书

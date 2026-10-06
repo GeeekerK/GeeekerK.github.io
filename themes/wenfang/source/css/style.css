@@ -415,6 +415,16 @@ a { color: inherit; text-decoration: none; }
 .book-cover-author { font-size: 0.75rem; color: var(--meta); }
 .book-publisher { margin-top: 14px; font-size: 0.8rem; color: var(--dark-muted); }
 
+/* media two-column: podcasts + videos */
+.media-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.media-col .section-title { margin-bottom: 8px; }
+.pub-list.compact .pub-row { padding: 14px 6px; gap: 14px; }
+.pub-list.compact .pub-title { font-size: 1rem; }
+.pub-list.compact .pub-venue { font-size: 0.8rem; }
+@media (max-width: 768px) {
+  .media-cols { grid-template-columns: 1fr; gap: 8px; }
+}
+
 /* ---------- page head（竖排题字） ---------- */
 .page-head {
   display: flex;

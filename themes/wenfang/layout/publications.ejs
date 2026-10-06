@@ -26,6 +26,25 @@
 </section>
 <% } %>
 
+<% if (pubs.books && pubs.books.length) { %>
+<section class="section-dark shelf-section">
+  <div class="container">
+    <h2 class="section-title"><span class="juan"><%= __('publications.books') %></span><%= __('publications.books_title') %> <span class="section-count"><%= pubs.books.length %></span></h2>
+    <div class="bookshelf">
+      <% pubs.books.forEach(function (book) { %>
+        <div class="book">
+          <div class="book-cover">
+            <p class="book-cover-title">《<%= book.title %>》</p>
+            <p class="book-cover-author"><%= book.role %> · <%= book.year %></p>
+          </div>
+          <p class="book-publisher"><%= book.publisher %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+<% } %>
+
 <% if (pubs.articles && pubs.articles.length) { %>
 <section class="container pub-section">
   <h2 class="section-title"><span class="juan"><%= __('publications.articles') %></span><%= __('publications.articles_title') %> <span class="section-count"><%= pubs.articles.length %></span></h2>
@@ -44,21 +63,43 @@
 </section>
 <% } %>
 
-<% if (pubs.books && pubs.books.length) { %>
-<section class="section-dark shelf-section">
-  <div class="container">
-    <h2 class="section-title"><span class="juan"><%= __('publications.books') %></span><%= __('publications.books_title') %> <span class="section-count"><%= pubs.books.length %></span></h2>
-    <div class="bookshelf">
-      <% pubs.books.forEach(function (book) { %>
-        <div class="book">
-          <div class="book-cover">
-            <p class="book-cover-title">《<%= book.title %>》</p>
-            <p class="book-cover-author"><%= book.role %> · <%= book.year %></p>
+<% if ((pubs.podcasts && pubs.podcasts.length) || (pubs.videos && pubs.videos.length)) { %>
+<section class="container pub-section pub-media">
+  <div class="media-cols">
+    <% if (pubs.podcasts && pubs.podcasts.length) { %>
+    <div class="media-col">
+      <h2 class="section-title"><span class="juan"><%= __('publications.podcasts') %></span><%= __('publications.podcasts_title') %> <span class="section-count"><%= pubs.podcasts.length %></span></h2>
+      <div class="pub-list compact">
+        <% pubs.podcasts.forEach(function (pub) { %>
+          <div class="pub-row">
+            <span class="pub-year"><%= pub.year %></span>
+            <div class="pub-main">
+              <p class="pub-title"><%= pub.title %></p>
+              <p class="pub-venue"><%= pub.venue %></p>
+            </div>
+            <% if (pub.link) { %><a class="pub-link" href="<%= pub.link %>">收听 →</a><% } %>
           </div>
-          <p class="book-publisher"><%= book.publisher %></p>
-        </div>
-      <% }) %>
+        <% }) %>
+      </div>
     </div>
+    <% } %>
+    <% if (pubs.videos && pubs.videos.length) { %>
+    <div class="media-col">
+      <h2 class="section-title"><span class="juan"><%= __('publications.videos') %></span><%= __('publications.videos_title') %> <span class="section-count"><%= pubs.videos.length %></span></h2>
+      <div class="pub-list compact">
+        <% pubs.videos.forEach(function (pub) { %>
+          <div class="pub-row">
+            <span class="pub-year"><%= pub.year %></span>
+            <div class="pub-main">
+              <p class="pub-title"><%= pub.title %></p>
+              <p class="pub-venue"><%= pub.venue %></p>
+            </div>
+            <% if (pub.link) { %><a class="pub-link" href="<%= pub.link %>">观看 →</a><% } %>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+    <% } %>
   </div>
 </section>
 <% } %>
