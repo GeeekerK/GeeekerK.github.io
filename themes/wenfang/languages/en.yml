@@ -1,0 +1,83 @@
+menu:
+  home: Home
+  archives: Journal
+  projects: Works
+  publications: Publications
+  about: About
+  contact: Contact
+lang_switch: 中文
+lang_switch_title: Switch to Chinese
+hero:
+  eyebrow: 丙午 · Since 2022
+  title: Slowly, but surely.
+  sub: Writing, building, learning.
+  stat_posts: Posts
+  stat_projects: Works
+  stat_works: Publications
+  btn_projects: See my works
+  btn_about: About me →
+home:
+  vol1: Vol.1
+  vol1_title: Recent posts
+  vol2: Vol.2
+  vol2_title: Selected works
+  vol3: Vol.3
+  vol3_title: Publications
+  all_posts: All posts →
+  all_projects: Project gallery →
+  all_works: All publications →
+  read: Read →
+cta:
+  title: Say hello
+  sub: For collaborations, commissions, or just a friendly note.
+footer:
+  tagline: Writing, building, learning.
+  meta: © %s–%s %s · Paper & Ink · HEXO
+filter:
+  all: All
+  diary: Diary
+  weekly: Weekly
+  annual: Annual
+  other: Other
+archives:
+  eyebrow: Journal · Archive
+  title: Journal
+  sub: "Diary is breathing, weekly is rhythm, annual is looking back. %s posts."
+  tags: Tags
+  tags_title: Tags
+  vertical: Daily learning
+  posts_unit: posts
+annual:
+  label: Annual
+  vertical: Year %s · Year in review
+projects:
+  eyebrow: Works
+  title: Works
+  sub: "%s pieces, all made with time."
+  vertical: Build to express
+publications:
+  eyebrow: Publications
+  title: Publications
+  sub: Papers, books and essays — three bindings of thought.
+  vertical: Write to speak
+  papers: P
+  papers_title: Papers
+  books: B
+  books_title: Books
+  articles: A
+  articles_title: Articles
+  podcasts: M
+  podcasts_title: Podcasts
+  videos: V
+  videos_title: Videos
+contact:
+  eyebrow: Contact
+  title: Contact
+  sub: Door is open, mail is checked.
+  vertical: Always reachable
+  email: Email
+  email_note: Usually reply within 48 hours. For collaborations, please state your purpose.
+  socials: Elsewhere
+  cv: CV
+  cv_note: An always-updated CV with experience, skills and publications.
+  cv_btn: View CV →
