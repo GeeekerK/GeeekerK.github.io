@@ -483,7 +483,7 @@ def make_front_matter(title, date, categories=None, tags=None):
     return (
         "---\n"
         "title: %s\n"
-        "date: %s 00:00:00\n"
+        "date: %s 00:00:00 +0800\n"
         "categories: %s\n"
         "tags: %s\n"
         "---\n\n" % (title, date, _yaml_list(categories or []), _yaml_list(tags or []))
@@ -495,7 +495,7 @@ def _pub_entry(title, date, slug):
     y, m, d = date.split("-")
     return {
         "title": title,
-        "venue": "本站 · 文章",
+        "venue": "本站 · 读书",
         "year": int(y),
         "link": "/%s/%s/%s/%s/" % (y, m, d, slug),
     }
