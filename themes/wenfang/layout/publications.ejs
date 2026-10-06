@@ -27,20 +27,18 @@
 <% } %>
 
 <% if (pubs.books && pubs.books.length) { %>
-<section class="section-dark shelf-section">
-  <div class="container">
-    <h2 class="section-title"><span class="juan"><%= __('publications.books') %></span><%= __('publications.books_title') %> <span class="section-count"><%= pubs.books.length %></span></h2>
-    <div class="bookshelf">
-      <% pubs.books.forEach(function (book) { %>
-        <div class="book">
-          <div class="book-cover">
-            <p class="book-cover-title">《<%= book.title %>》</p>
-            <p class="book-cover-author"><%= book.role %> · <%= book.year %></p>
-          </div>
-          <p class="book-publisher"><%= book.publisher %></p>
+<section class="container pub-section">
+  <h2 class="section-title"><span class="juan"><%= __('publications.books') %></span><%= __('publications.books_title') %> <span class="section-count"><%= pubs.books.length %></span></h2>
+  <div class="bookshelf">
+    <% pubs.books.forEach(function (book) { %>
+      <div class="book">
+        <div class="book-cover">
+          <p class="book-cover-title">《<%= book.title %>》</p>
+          <p class="book-cover-author"><%= book.role %> · <%= book.year %></p>
         </div>
-      <% }) %>
-    </div>
+        <p class="book-publisher"><%= book.publisher %></p>
+      </div>
+    <% }) %>
   </div>
 </section>
 <% } %>
