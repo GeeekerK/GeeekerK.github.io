@@ -432,7 +432,7 @@ class DocConverter:
 # ---------------------------------------------------------------------------
 # 标题解析 / front-matter
 # ---------------------------------------------------------------------------
-DATE_RE = re.compile(r"^(\d{4})-(\d{2})-(\d{2})[-_\s]+(.*)$")
+DATE_RE = re.compile(r"^(\d{4})[-/](\d{1,2})[-/](\d{1,2})[-_\s]*(.*)$")
 TAG_LINE_RE = re.compile(r"^标签[:：]\s*(.+?)\s*$")
 
 
@@ -441,14 +441,17 @@ def parse_title(name):
     name = re.sub(r"\.md$", "", name.strip())
     m = DATE_RE.match(name)
     if m:
-        date = "%s-%s-%s" % (m.group(1), m.group(2), m.group(3))
+        date = "%s-%02d-%02d" % (m.group(1), int(m.group(2)), int(m.group(3)))
         title = m.group(4).strip() or name
         return date, title
     return time.strftime("%Y-%m-%d"), name
 
 
 def slugify(title, date):
-    """生成安全的文件名：去非法字符，保留中文"""
+    """生成安全的文件名：去非法字符，保留中文。
+    若 title 本身就是日期（纯日期命名），文件名只用 date，避免 2026-10-03-2026-10-03 这种重复。"""
+    if re.fullmatch(r"[\d/\-年月日\s]+", title or ""):
+        return date
     clean = re.sub(r'[\\/:*?"<>|\s]+', "-", title).strip("-")
     return "%s-%s" % (date, clean)
 
