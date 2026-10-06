@@ -425,6 +425,37 @@ a { color: inherit; text-decoration: none; }
   .media-cols { grid-template-columns: 1fr; gap: 8px; }
 }
 
+/* articles: columns by year, newest year left */
+.year-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 36px;
+  margin-top: 8px;
+}
+.year-col { min-width: 0; }
+.year-col-head {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  letter-spacing: 0.05em;
+}
+.year-col .pub-row.tight {
+  padding: 10px 0;
+  border-bottom: none;
+  gap: 0;
+}
+.year-col .pub-row.tight:hover { background: transparent; }
+.year-col .pub-title { font-size: 0.98rem; line-height: 1.5; }
+.year-col .pub-title a { color: var(--ink); text-decoration: none; }
+.year-col .pub-title a:hover { color: var(--accent); }
+.year-col .pub-venue { font-size: 0.78rem; margin-top: 3px; }
+@media (max-width: 768px) {
+  .year-cols { grid-template-columns: 1fr; gap: 24px; }
+}
+
 /* ---------- page head（竖排题字） ---------- */
 .page-head {
   display: flex;

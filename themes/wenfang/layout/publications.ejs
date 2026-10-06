@@ -48,15 +48,28 @@
 <% if (pubs.articles && pubs.articles.length) { %>
 <section class="container pub-section">
   <h2 class="section-title"><span class="juan"><%= __('publications.articles') %></span><%= __('publications.articles_title') %> <span class="section-count"><%= pubs.articles.length %></span></h2>
-  <div class="pub-list">
-    <% pubs.articles.forEach(function (pub) { %>
-      <div class="pub-row">
-        <span class="pub-year"><%= pub.year %></span>
-        <div class="pub-main">
-          <p class="pub-title"><%= pub.title %></p>
-          <p class="pub-venue"><%= pub.venue %></p>
-        </div>
-        <% if (pub.link) { %><a class="pub-link" href="<%= pub.link %>"><%= __('home.read') %></a><% } %>
+  <%
+    // 按年份分组，年份降序（最新年在最左列），列内已按 link 日期倒序
+    var yearGroups = {};
+    pubs.articles.forEach(function (pub) {
+      var y = String(pub.year);
+      if (!yearGroups[y]) yearGroups[y] = [];
+      yearGroups[y].push(pub);
+    });
+    var years = Object.keys(yearGroups).sort().reverse();
+  %>
+  <div class="year-cols">
+    <% years.forEach(function (y) { %>
+      <div class="year-col">
+        <p class="year-col-head"><%= y %></p>
+        <% yearGroups[y].forEach(function (pub) { %>
+          <div class="pub-row tight">
+            <div class="pub-main">
+              <p class="pub-title"><a href="<%= pub.link %>"><%= pub.title %></a></p>
+              <p class="pub-venue"><%= pub.venue %></p>
+            </div>
+          </div>
+        <% }) %>
       </div>
     <% }) %>
   </div>
