@@ -452,7 +452,8 @@ def slugify(title, date):
     若 title 本身就是日期（纯日期命名），文件名只用 date，避免 2026-10-03-2026-10-03 这种重复。"""
     if re.fullmatch(r"[\d/\-年月日\s]+", title or ""):
         return date
-    clean = re.sub(r'[\\/:*?"<>|\s]+', "-", title).strip("-")
+    # 去掉中英文标点里不适合做 URL 的字符，保留中文和常见标点
+    clean = re.sub(r'[\\/:*?"<>|\s《》〈〉「」『』]+', "-", title).strip("-")
     return "%s-%s" % (date, clean)
 
 
@@ -489,6 +490,56 @@ def make_front_matter(title, date, categories=None, tags=None):
     )
 
 
+def _pub_entry(title, date, slug):
+    """构造 publications.json 里 articles 数组的一条记录"""
+    y, m, d = date.split("-")
+    return {
+        "title": title,
+        "venue": "本站 · 文章",
+        "year": int(y),
+        "link": "/%s/%s/%s/%s/" % (y, m, d, slug),
+    }
+
+
+def _sync_publications(pub_articles):
+    """把「文章」文件夹下的文档合并进 source/_data/publications.json 的 articles 数组。
+
+    - 按 link 去重，飞书文档优先（同名手动条目保留）
+    - 按 year 倒序、同年按 link 日期倒序
+    - 保留手动维护的 papers/books/podcasts/videos 字段
+    """
+    path = "source/_data/publications.json"
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except FileNotFoundError:
+        data = {"papers": [], "books": [], "articles": [], "podcasts": [], "videos": []}
+
+    existing = data.get("articles", []) or []
+    seen = set()
+    merged = []
+    # 先保留手动条目（link 不以本站 /YYYY/MM/DD/ 开头或在飞书列表里没有的）
+    for item in existing:
+        link = item.get("link", "")
+        seen.add(link)
+        merged.append(item)
+    # 再加入/更新飞书文章
+    for art in pub_articles:
+        link = art["link"]
+        # 飞书文章覆盖手动同名条目
+        merged = [m for m in merged if m.get("link") != link]
+        merged.append(art)
+        seen.add(link)
+
+    # 排序：year 倒序
+    merged.sort(key=lambda x: (x.get("year", 0), x.get("link", "")), reverse=True)
+    data["articles"] = merged
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+    print("== publications.json 已更新，共 %d 篇文章 ==" % len(merged))
+
+
 # ---------------------------------------------------------------------------
 # 主流程
 # ---------------------------------------------------------------------------
@@ -512,6 +563,7 @@ def main():
 
     os.makedirs(posts_dir(), exist_ok=True)
     added, updated, skipped, failed = [], [], [], []
+    pub_articles = []  # category=="文章" 的文档，待写入 publications.json
 
     for doc in docs:
         name = doc.get("name", "")
@@ -541,6 +593,8 @@ def main():
                 if old == content:
                     skipped.append(name)
                     print("  无变化，跳过: %s" % slug)
+                    if category == "文章":
+                        pub_articles.append(_pub_entry(title, date, slug))
                     continue
                 updated.append(name)
             else:
@@ -551,9 +605,15 @@ def main():
                 with open(dest, "w", encoding="utf-8") as f:
                     f.write(content)
                 print("  已写入 %s" % dest)
+            if category == "文章":
+                pub_articles.append(_pub_entry(title, date, slug))
         except Exception as e:
             failed.append((name, str(e)))
             print("  [error] %s: %s" % (name, e))
+
+    # 同步 publications.json：把「文章」文件夹下的文档加进 articles 数组
+    if not DRY_RUN:
+        _sync_publications(pub_articles)
 
     print("\n== 摘要 ==")
     print("新增 %d 篇: %s" % (len(added), ", ".join(added) or "-"))
