@@ -25,6 +25,8 @@ concurrency:
 jobs:
   sync-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
