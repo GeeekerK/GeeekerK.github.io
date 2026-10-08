@@ -171,8 +171,7 @@ def list_folder_files(folder_token, token):
 def list_folder_tree(folder_token, token, category=""):
     """递归列出文件夹下所有 docx。
 
-    返回 [{name, token, url, category}]；category 是文档所在一级子文件夹名，
-    根目录下的文档 category 为空字符串。
+    返回 [{name, token, url, category, created_time}]；category 是文档所在一级子文件夹名。
     """
     result = []
     for f in list_folder_files(folder_token, token):
@@ -183,6 +182,7 @@ def list_folder_tree(folder_token, token, category=""):
                 "token": f.get("token", ""),
                 "url": f.get("url", ""),
                 "category": category,
+                "created_time": f.get("created_time") or f.get("CreatedTime") or "",
             })
         elif ftype == "folder":
             sub = (f.get("name") or "").strip()
@@ -449,12 +449,13 @@ def parse_title(name):
 
 def slugify(title, date):
     """生成安全的文件名：去非法字符，保留中文。
-    若 title 本身就是日期（纯日期命名），文件名只用 date，避免 2026-10-03-2026-10-03 这种重复。"""
+    若 title 本身就是日期（纯日期命名），文件名只用 date，避免 2026-10-03-2026-10-03 这种重复。
+    若 date 为空（长文类），只保留标题。"""
     if re.fullmatch(r"[\d/\-年月日\s]+", title or ""):
         return date
     # 去掉中英文标点里不适合做 URL 的字符，保留中文和常见标点
     clean = re.sub(r'[\\/:*?"<>|\s《》〈〉「」『』]+', "-", title).strip("-")
-    return "%s-%s" % (date, clean)
+    return "%s-%s" % (date, clean) if date else clean
 
 
 def extract_tags(body_lines):
@@ -479,15 +480,18 @@ def _yaml_list(items):
     return "[" + ", ".join(items) + "]" if items else "[]"
 
 
-def make_front_matter(title, date, categories=None, tags=None):
-    return (
+def make_front_matter(title, date, categories=None, tags=None, hidden=False):
+    fm = (
         "---\n"
         "title: %s\n"
         "date: %s 00:00:00 +0800\n"
         "categories: %s\n"
         "tags: %s\n"
-        "---\n\n" % (title, date, _yaml_list(categories or []), _yaml_list(tags or []))
-    )
+    ) % (title, date, _yaml_list(categories or []), _yaml_list(tags or []))
+    if hidden:
+        fm += "hidden: true\n"
+    fm += "---\n\n"
+    return fm
 
 
 def _pub_entry(title, date, slug):
@@ -569,6 +573,7 @@ def main():
         name = doc.get("name", "")
         document_id = doc.get("token", "")
         category = doc.get("category", "")
+        created_ts = doc.get("created_time") or ""
         if not document_id:
             failed.append((name, "缺少 token"))
             continue
@@ -577,7 +582,18 @@ def main():
         try:
             blocks = get_document_blocks(document_id, token)
             date, title = parse_title(name)
-            slug = slugify(title, date)
+            # 「文章」类长文：slug 固定为标题（不带日期前缀），date 用飞书文档创建时间
+            is_article = (category == "文章")
+            if is_article:
+                if created_ts:
+                    try:
+                        # 飞书 created_time 是秒级 Unix 时间戳
+                        date = time.strftime("%Y-%m-%d", time.localtime(int(created_ts)))
+                    except Exception:
+                        pass
+                slug = slugify(title, "")  # date 留空，只保留标题
+            else:
+                slug = slugify(title, date)
             converter = DocConverter(document_id, token, slug)
             body_lines = converter.build(blocks)
             tags, body_lines = extract_tags(body_lines)
@@ -585,7 +601,7 @@ def main():
                 print("  提取标签: %s" % ", ".join(tags))
             categories = [category] if category else []
             body = "\n\n".join(body_lines).strip() + "\n"
-            content = make_front_matter(title, date, categories, tags) + body
+            content = make_front_matter(title, date, categories, tags, hidden=is_article) + body
             dest = os.path.join(posts_dir(), slug + ".md")
             if os.path.exists(dest):
                 with open(dest, "r", encoding="utf-8") as f:
@@ -593,7 +609,7 @@ def main():
                 if old == content:
                     skipped.append(name)
                     print("  无变化，跳过: %s" % slug)
-                    if category == "文章":
+                    if is_article:
                         pub_articles.append(_pub_entry(title, date, slug))
                     continue
                 updated.append(name)
@@ -605,7 +621,7 @@ def main():
                 with open(dest, "w", encoding="utf-8") as f:
                     f.write(content)
                 print("  已写入 %s" % dest)
-            if category == "文章":
+            if is_article:
                 pub_articles.append(_pub_entry(title, date, slug))
         except Exception as e:
             failed.append((name, str(e)))

@@ -20,10 +20,12 @@
   <!-- 日志目录 -->
   <%
     var _lang = page.lang || 'zh-CN';
-    var langPosts = site.posts.toArray().filter(function (p) { return (p.lang || 'zh-CN') === _lang; })
+    var langPosts = site.posts.toArray().filter(function (p) {
+      return (p.lang || 'zh-CN') === _lang && !p.hidden;
+    })
       .sort(function (a, b) { return b.date - a.date; });
     var langTags = site.tags.toArray().filter(function (t) {
-      return t.posts.toArray().some(function (p) { return (p.lang || 'zh-CN') === _lang; });
+      return t.posts.toArray().some(function (p) { return (p.lang || 'zh-CN') === _lang && !p.hidden; });
     }).sort(function (a, b) { return b.length - a.length; });
   %>
   <section class="container page-head">
