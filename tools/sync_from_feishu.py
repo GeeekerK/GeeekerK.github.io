@@ -522,15 +522,17 @@ def _sync_publications(pub_articles):
     existing = data.get("articles", []) or []
     seen = set()
     merged = []
-    # 先保留手动条目（link 不以本站 /YYYY/MM/DD/ 开头或在飞书列表里没有的）
+    # 先保留手动条目（link 不以本站 /YYYY/ 日期路径开头的）
+    # 自动条目每次全量重建，避免旧版本残留
     for item in existing:
         link = item.get("link", "")
+        if re.match(r"^/\d{4}/\d{2}/\d{2}/", link):
+            continue  # 自动生成的，丢弃，下面重新加
         seen.add(link)
         merged.append(item)
     # 再加入/更新飞书文章
     for art in pub_articles:
         link = art["link"]
-        # 飞书文章覆盖手动同名条目
         merged = [m for m in merged if m.get("link") != link]
         merged.append(art)
         seen.add(link)
