@@ -282,10 +282,12 @@ a { color: inherit; text-decoration: none; }
 .section-more { font-size: 0.9rem; color: var(--muted); letter-spacing: 0.06em; transition: color 0.2s; }
 .section-more:hover { color: var(--accent); }
 
-.section-dark { background: var(--dark-surface); color: var(--dark-text); padding: 92px 0; }
-[data-theme="dark"] .section-dark { background: #0c0c0b; }
-.section-dark .section-head { border-bottom-color: var(--dark-text); }
-.section-dark .section-more { color: var(--dark-muted); }
+.section-dark { background: var(--bg); color: var(--fg); padding: 92px 0; }
+[data-theme="dark"] .section-dark { background: #0c0c0b; color: #f5f3ee; }
+.section-dark .section-head { border-bottom-color: var(--border); }
+[data-theme="dark"] .section-dark .section-head { border-bottom-color: rgba(245,243,238,0.2); }
+.section-dark .section-more { color: var(--muted); }
+[data-theme="dark"] .section-dark .section-more { color: rgba(245,243,238,0.6); }
 .section-dark .section-more:hover { color: #d97757; }
 
 /* ---------- writing list ---------- */
@@ -384,12 +386,17 @@ a { color: inherit; text-decoration: none; }
 .pub-link:hover { color: var(--accent-hover); }
 .pub-section { padding: 40px 28px 64px; }
 
-.section-dark .pub-list { border-top-color: var(--dark-border); }
-.section-dark .pub-row { border-bottom-color: var(--dark-border); }
-.section-dark .pub-row:hover { background: rgba(250, 249, 245, 0.04); }
-.section-dark .pub-venue { color: var(--dark-muted); }
+.section-dark .pub-list { border-top-color: var(--border); }
+.section-dark .pub-row { border-bottom-color: var(--border); }
+.section-dark .pub-row:hover { background: rgba(0,0,0,0.03); }
+[data-theme="dark"] .section-dark .pub-list { border-top-color: rgba(245,243,238,0.12); }
+[data-theme="dark"] .section-dark .pub-row { border-bottom-color: rgba(245,243,238,0.12); }
+[data-theme="dark"] .section-dark .pub-row:hover { background: rgba(250,249,245,0.04); }
+.section-dark .pub-venue { color: var(--muted); }
 .section-dark .pub-link { color: #d97757; }
-.section-dark .pub-year { color: var(--dark-muted); }
+.section-dark .pub-year { color: var(--muted); }
+[data-theme="dark"] .section-dark .pub-venue,
+[data-theme="dark"] .section-dark .pub-year { color: rgba(245,243,238,0.6); }
 
 /* bookshelf */
 .shelf-section { padding: 92px 0; }

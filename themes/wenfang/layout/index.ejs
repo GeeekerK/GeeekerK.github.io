@@ -5,7 +5,9 @@
   var _lang = page.lang || 'zh-CN';
   var _isDefault = _lang === config.language[0];
   var _prefix = _isDefault ? '' : '/' + _lang;
-  var langPosts = site.posts.toArray().filter(function (p) { return (p.lang || 'zh-CN') === _lang; })
+  var langPosts = site.posts.toArray().filter(function (p) {
+    return (p.lang || 'zh-CN') === _lang && !p.hidden;
+  })
     .sort(function (a, b) { return b.date - a.date; });
   var latestPosts = langPosts.slice(0, 4);
 %>
