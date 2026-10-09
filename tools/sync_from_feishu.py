@@ -66,6 +66,28 @@ def posts_dir():
     return os.environ.get("BLOG_POSTS_DIR", "source/_posts")
 
 
+def manifest_path():
+    return os.path.join(posts_dir(), ".sync-manifest.json")
+
+
+def load_manifest():
+    """加载飞书文档 token → slug 映射，保证同一文档永远写到同一个 md。"""
+    try:
+        with open(manifest_path(), "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+
+def save_manifest(m):
+    try:
+        with open(manifest_path(), "w", encoding="utf-8") as f:
+            json.dump(m, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+    except Exception as e:
+        print("[warn] 写 manifest 失败: %s" % e)
+
+
 def images_dir():
     return os.environ.get("BLOG_IMAGES_DIR", "source/images/feishu")
 
@@ -570,6 +592,8 @@ def main():
     os.makedirs(posts_dir(), exist_ok=True)
     added, updated, skipped, failed = [], [], [], []
     pub_articles = []  # category=="文章" 的文档，待写入 publications.json
+    seen_tokens = set()  # 按飞书文档 token 去重，同一文档不重复处理
+    manifest = load_manifest()  # token → slug 映射
 
     for doc in docs:
         name = doc.get("name", "")
@@ -579,6 +603,10 @@ def main():
         if not document_id:
             failed.append((name, "缺少 token"))
             continue
+        if document_id in seen_tokens:
+            print("-- 跳过（同文档已处理过）: %s" % name)
+            continue
+        seen_tokens.add(document_id)
         cat_desc = ("（分类: %s）" % category) if category else "（根目录/未分类）"
         print("-- 处理: %s %s" % (name, cat_desc))
         try:
@@ -593,9 +621,12 @@ def main():
                         date = time.strftime("%Y-%m-%d", time.localtime(int(created_ts)))
                     except Exception:
                         pass
-                slug = slugify(title, "")  # date 留空，只保留标题
+                new_slug = slugify(title, "")  # date 留空，只保留标题
             else:
-                slug = slugify(title, date)
+                new_slug = slugify(title, date)
+            # 同一飞书文档 token 永远用同一个 slug（即使标题改了也不生成新文件）
+            slug = manifest.get(document_id) or new_slug
+            manifest[document_id] = slug
             converter = DocConverter(document_id, token, slug)
             body_lines = converter.build(blocks)
             tags, body_lines = extract_tags(body_lines)
@@ -632,6 +663,7 @@ def main():
     # 同步 publications.json：把「文章」文件夹下的文档加进 articles 数组
     if not DRY_RUN:
         _sync_publications(pub_articles)
+        save_manifest(manifest)
 
     print("\n== 摘要 ==")
     print("新增 %d 篇: %s" % (len(added), ", ".join(added) or "-"))
