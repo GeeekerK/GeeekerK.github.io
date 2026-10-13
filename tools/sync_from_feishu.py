@@ -342,7 +342,10 @@ class DocConverter:
             return ["%s %s" % ("#" * level, text)] if text else []
         if btype == BT_TEXT:
             text = block_text(block).strip()
-            return [text] if text else []
+            if not text:
+                return []
+            # 飞书一个 text block 内可能含 \n，拆成多行以便 extract_category/extract_tags 逐行识别
+            return [ln.strip() for ln in text.split("\n") if ln.strip()]
         if btype == BT_BULLET:
             text = block_text(block).strip()
             return ["- %s" % text] if text else []
