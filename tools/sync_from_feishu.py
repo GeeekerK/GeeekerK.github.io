@@ -190,10 +190,12 @@ def list_folder_files(folder_token, token):
     return files
 
 
-def list_folder_tree(folder_token, token, category=""):
+def list_folder_tree(folder_token, token, category="", top_folder=""):
     """递归列出文件夹下所有 docx。
 
-    返回 [{name, token, url, category, created_time}]；category 是文档所在一级子文件夹名。
+    返回 [{name, token, url, category, top_folder, created_time}]。
+    - category: 文档所在的最深一级子文件夹名（用于 Hexo categories）
+    - top_folder: 一级子文件夹名（日记/周报/年报/其他/文章），用于区分日志类 vs 文章类
     """
     result = []
     for f in list_folder_files(folder_token, token):
@@ -204,12 +206,14 @@ def list_folder_tree(folder_token, token, category=""):
                 "token": f.get("token", ""),
                 "url": f.get("url", ""),
                 "category": category,
+                "top_folder": top_folder or category,
                 "created_time": f.get("created_time") or f.get("CreatedTime") or "",
             })
         elif ftype == "folder":
             sub = (f.get("name") or "").strip()
             if sub:
-                result.extend(list_folder_tree(f["token"], token, sub))
+                # 进入二级子文件夹时，top_folder 保持一级文件夹名不变
+                result.extend(list_folder_tree(f["token"], token, sub, top_folder or sub))
     return result
 
 
@@ -599,6 +603,7 @@ def main():
         name = doc.get("name", "")
         document_id = doc.get("token", "")
         category = doc.get("category", "")
+        top_folder = doc.get("top_folder", "")
         created_ts = doc.get("created_time") or ""
         if not document_id:
             failed.append((name, "缺少 token"))
@@ -607,13 +612,16 @@ def main():
             print("-- 跳过（同文档已处理过）: %s" % name)
             continue
         seen_tokens.add(document_id)
+        # 「文章」类长文：在「文章」文件夹下（含其子文件夹如 读书/随笔/技术）
+        is_article = (top_folder == "文章")
+        # 文章类如果直接放在「文章」根下，默认归类为「随笔」
+        if is_article and not category:
+            category = "随笔"
         cat_desc = ("（分类: %s）" % category) if category else "（根目录/未分类）"
         print("-- 处理: %s %s" % (name, cat_desc))
         try:
             blocks = get_document_blocks(document_id, token)
             date, title = parse_title(name)
-            # 「文章」类长文：slug 固定为标题（不带日期前缀），date 用飞书文档创建时间
-            is_article = (category == "文章")
             if is_article:
                 if created_ts:
                     try:
