@@ -190,12 +190,10 @@ def list_folder_files(folder_token, token):
     return files
 
 
-def list_folder_tree(folder_token, token, category="", top_folder=""):
+def list_folder_tree(folder_token, token, category=""):
     """递归列出文件夹下所有 docx。
 
-    返回 [{name, token, url, category, top_folder, created_time}]。
-    - category: 文档所在的最深一级子文件夹名（用于 Hexo categories）
-    - top_folder: 一级子文件夹名（日记/周报/年报/其他/文章），用于区分日志类 vs 文章类
+    返回 [{name, token, url, category, created_time}]；category 是文档所在一级子文件夹名。
     """
     result = []
     for f in list_folder_files(folder_token, token):
@@ -206,14 +204,12 @@ def list_folder_tree(folder_token, token, category="", top_folder=""):
                 "token": f.get("token", ""),
                 "url": f.get("url", ""),
                 "category": category,
-                "top_folder": top_folder or category,
                 "created_time": f.get("created_time") or f.get("CreatedTime") or "",
             })
         elif ftype == "folder":
             sub = (f.get("name") or "").strip()
             if sub:
-                # 进入二级子文件夹时，top_folder 保持一级文件夹名不变
-                result.extend(list_folder_tree(f["token"], token, sub, top_folder or sub))
+                result.extend(list_folder_tree(f["token"], token, sub))
     return result
 
 
@@ -460,6 +456,7 @@ class DocConverter:
 # ---------------------------------------------------------------------------
 DATE_RE = re.compile(r"^(\d{4})[-/](\d{1,2})[-/](\d{1,2})[-_\s]*(.*)$")
 TAG_LINE_RE = re.compile(r"^标签[:：]\s*(.+?)\s*$")
+CAT_LINE_RE = re.compile(r"^分类[:：]\s*(.+?)\s*$")
 
 
 def parse_title(name):
@@ -499,6 +496,22 @@ def extract_tags(body_lines):
             tags = [t.strip() for t in re.split(r"[,，、]", m.group(1)) if t.strip()]
             return tags, rest[:i] + rest[i + 1:]
     return [], rest
+
+
+def extract_category(body_lines):
+    """在正文开头找「分类：xxx」行，返回 (category, remaining_lines)。
+
+    只检查跳过空行后的第一行；找不到则 category 为空、原文不动。
+    """
+    rest = list(body_lines)
+    i = 0
+    while i < len(rest) and not rest[i].strip():
+        i += 1
+    if i < len(rest):
+        m = CAT_LINE_RE.match(rest[i].strip())
+        if m:
+            return m.group(1).strip(), rest[:i] + rest[i + 1:]
+    return "", rest
 
 
 def _yaml_list(items):
@@ -602,8 +615,7 @@ def main():
     for doc in docs:
         name = doc.get("name", "")
         document_id = doc.get("token", "")
-        category = doc.get("category", "")
-        top_folder = doc.get("top_folder", "")
+        folder_cat = doc.get("category", "")
         created_ts = doc.get("created_time") or ""
         if not document_id:
             failed.append((name, "缺少 token"))
@@ -612,11 +624,9 @@ def main():
             print("-- 跳过（同文档已处理过）: %s" % name)
             continue
         seen_tokens.add(document_id)
-        # 「文章」类长文：在「文章」文件夹下（含其子文件夹如 读书/随笔/技术）
-        is_article = (top_folder == "文章")
-        # 文章类如果直接放在「文章」根下，默认归类为「随笔」
-        if is_article and not category:
-            category = "随笔"
+        # 「文章」类长文：在「文章」文件夹下
+        is_article = (folder_cat == "文章")
+        category = folder_cat
         cat_desc = ("（分类: %s）" % category) if category else "（根目录/未分类）"
         print("-- 处理: %s %s" % (name, cat_desc))
         try:
@@ -637,10 +647,17 @@ def main():
             manifest[document_id] = slug
             converter = DocConverter(document_id, token, slug)
             body_lines = converter.build(blocks)
+            # 文章类：从文档开头解析「分类：xxx」作为外层 category
+            if is_article:
+                inline_cat, body_lines = extract_category(body_lines)
+                if inline_cat:
+                    category = inline_cat
+                    print("  文档内分类: %s" % category)
             tags, body_lines = extract_tags(body_lines)
             if tags:
                 print("  提取标签: %s" % ", ".join(tags))
-            categories = [category] if category else []
+            # 文章类在归档/首页隐藏，只在著述页显示
+            categories = [category] if (category and category != "文章") else []
             body = "\n\n".join(body_lines).strip() + "\n"
             content = make_front_matter(title, date, categories, tags, hidden=is_article) + body
             dest = os.path.join(posts_dir(), slug + ".md")
