@@ -13,7 +13,7 @@ layout: page
 
 - **安全**：CTF（Crypto / Misc / Mobile / Reverse / 取证）
 - **开发**：Python、Web 基础、工具脚本
-- **习惯**：写日记与周报，用记录对抗遗忘
+- **习惯**：写日记与周记，用记录对抗遗忘
 
 ## 经历
 

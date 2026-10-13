@@ -1,5 +1,5 @@
 <%
-  var isAnnual = page.categories && page.categories.some(function (c) { return c.name === '年报' || c.name === '年報'; });
+  var isAnnual = page.categories && page.categories.some(function (c) { return c.name === '年报' || c.name === '年報' || c.name === '年记' || c.name === '年記'; });
 %>
 <article class="article container<%= isAnnual ? ' article-annual' : '' %>">
   <% if (isAnnual) { %>

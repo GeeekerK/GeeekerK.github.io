@@ -22,7 +22,8 @@ sync_from_feishu.py — 把飞书云文档同步为 Hexo 博客文章
 ------------------
   按文档所在的子文件夹自动归类，例如：
     博客文章/日记/xxx  -> categories: [日记]
-    博客文章/周报/xxx  -> categories: [周报]
+    博客文章/周记/xxx  -> categories: [周记]
+    博客文章/年记/xxx  -> categories: [年记]
   直接放在「博客文章」根目录的文档：categories 为空。
   在飞书里把文档拖进/拖出子文件夹即可改分类，无需改文档内容。
 

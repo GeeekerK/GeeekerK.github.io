@@ -46,7 +46,7 @@
 
   <section class="container timeline-section">
     <% var lastYear = null; %>
-    <% var catMap = { '日记': 'diary', '日記': 'diary', '周报': 'weekly', '週報': 'weekly', '年报': 'annual', '年報': 'annual' }; %>
+    <% var catMap = { '日记': 'diary', '日記': 'diary', '周记': 'weekly', '週記': 'weekly', '周报': 'weekly', '週報': 'weekly', '年记': 'annual', '年記': 'annual', '年报': 'annual', '年報': 'annual' }; %>
     <% var labelMap = { diary: __('filter.diary'), weekly: __('filter.weekly'), annual: __('filter.annual'), other: __('filter.other') }; %>
     <% langPosts.forEach(function (post) { %>
       <% var cat = post.categories.length ? post.categories.first().name : 'other'; %>

@@ -42,7 +42,7 @@
     <a class="section-more" href="<%- url_for(_prefix + '/archives/') %>"><%= __('home.all_posts') %></a>
   </div>
   <div class="writing-list">
-    <% var kindLabel = { '日记': __('filter.diary'), '日記': __('filter.diary'), '周报': __('filter.weekly'), '週報': __('filter.weekly'), '年报': __('filter.annual'), '年報': __('filter.annual') }; %>
+    <% var kindLabel = { '日记': __('filter.diary'), '日記': __('filter.diary'), '周记': __('filter.weekly'), '週記': __('filter.weekly'), '周报': __('filter.weekly'), '週報': __('filter.weekly'), '年记': __('filter.annual'), '年記': __('filter.annual'), '年报': __('filter.annual'), '年報': __('filter.annual') }; %>
     <% latestPosts.forEach(function (post) { %>
       <a class="writing-row" href="<%- url_for(post.path) %>">
         <span class="writing-kind"><%= post.categories.length ? (kindLabel[post.categories.first().name] || post.categories.first().name) : __('filter.other') %></span>

@@ -36,19 +36,19 @@ footer:
 filter:
   all: 全部
   diary: 日记
-  weekly: 周报
-  annual: 年报
+  weekly: 周记
+  annual: 年记
   other: 其他
 archives:
   eyebrow: 日志 · Archive
   title: 日志
-  sub: 日记是呼吸，周报是节奏，年报是回望。共 %s 篇。
+  sub: 日记是呼吸，周记是节奏，年记是回望。共 %s 篇。
   tags: 附
   tags_title: 标签
   vertical: 日知其所亡
   posts_unit: 篇
 annual:
-  label: 年报
+  label: 年记
   vertical: 岁次%s · 年终回望
 projects:
   eyebrow: 造物 · Works
