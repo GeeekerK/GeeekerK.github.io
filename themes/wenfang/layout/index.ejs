@@ -36,13 +36,22 @@
 </section>
 
 <!-- 卷首 · 小传（自我介绍） -->
-<section class="section container intro-section">
-  <div class="intro-card">
-    <h2 class="intro-name">你好，我是王伟。</h2>
-    <p class="intro-line">学安全的人，写代码，也写笔记。</p>
+<section class="section container">
+  <div class="article-content intro-content">
+    <h2>你好，我是王伟。</h2>
+    <p>学安全的人，写代码，也写笔记。</p>
     <p>从 2022 年开始在这个自留地记录：CTF 学习、工具折腾、偶尔的生活。相信开源，相信自托管，相信<strong>缓慢但正确地做事</strong>。</p>
-    <blockquote class="intro-quote">你想拥有你从未拥有的东西，那就要去做你从未做过的事。</blockquote>
-    <p>用 Hexo 静态生成，「文房」主题手工打磨——羊皮纸底色、宋体排版、朱砂印章。没有评论区、没有追踪、没有算法推荐。只有文字，和愿意读它们的你。</p>
+    <blockquote>你想拥有你从未拥有的东西，那就要去做你从未做过的事。</blockquote>
+    <h3>这个网站</h3>
+    <p>用 Hexo 静态生成，「文房」主题手工打磨——羊皮纸底色、宋体排版、朱砂印章、首页有一块自己写的生成式纹理。</p>
+    <p>没有评论区、没有追踪、没有算法推荐。只有文字，和愿意读它们的你。</p>
+    <h3>在这里可以找到</h3>
+    <ul>
+      <li><a href="<%- url_for(_prefix + '/archives/') %>">日志</a> — 日记、周记与年记</li>
+      <li><a href="<%- url_for(_prefix + '/projects/') %>">造物</a> — 我做的东西</li>
+      <li><a href="<%- url_for(_prefix + '/publications/') %>">著述</a> — 论文、文章与图书</li>
+      <li><a href="<%- url_for(_prefix + '/contact/') %>">雁书</a> — 社交链接与邮箱</li>
+    </ul>
   </div>
 </section>
 
