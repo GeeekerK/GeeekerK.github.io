@@ -1,0 +1,7 @@
+---
+title: "Just Norml"
+date: 2024-04-16T17:27:00+08:00
+categories: [日记]
+---
+
+Just Norml

@@ -1,0 +1,8 @@
+---
+title: "How am I viewing the beginning of this year as a fresh start"
+date: 2024-01-01T02:42:51+08:00
+categories: [日记]
+---
+
+###### How am I viewing the beginning of this year as a fresh start?
+Better And Better！追求卓越，志在UTokyo！！！

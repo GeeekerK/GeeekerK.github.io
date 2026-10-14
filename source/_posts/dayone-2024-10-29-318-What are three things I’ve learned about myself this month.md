@@ -1,0 +1,7 @@
+---
+title: "What are three things I’ve learned about myself this month"
+date: 2024-10-29T21:43:54+08:00
+categories: [日记]
+---
+
+###### What are three things I’ve learned about myself this month?
