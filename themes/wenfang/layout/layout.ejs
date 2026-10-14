@@ -37,7 +37,6 @@
         <a class="nav-link<% if (is_archive()) { %> active<% } %>" href="<%- url_for(_prefix + '/archives/') %>"><%= __('menu.archives') %></a>
         <a class="nav-link<% if (is_current('projects')) { %> active<% } %>" href="<%- url_for(_prefix + '/projects/') %>"><%= __('menu.projects') %></a>
         <a class="nav-link<% if (is_current('publications')) { %> active<% } %>" href="<%- url_for(_prefix + '/publications/') %>"><%= __('menu.publications') %></a>
-        <a class="nav-link<% if (is_current('about')) { %> active<% } %>" href="<%- url_for(_prefix + '/about/') %>"><%= __('menu.about') %></a>
         <a class="nav-link<% if (is_current('contact')) { %> active<% } %>" href="<%- url_for(_prefix + '/contact/') %>"><%= __('menu.contact') %></a>
         <%
           // 三语循环：中(默认/) -> en(/en/) -> ja(/ja/) -> 中
