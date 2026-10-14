@@ -881,3 +881,6 @@ a { color: inherit; text-decoration: none; }
 
 /* 小传与卷一之间的分割线 */
 .intro-rules { max-width: 680px; margin: 0 auto 20px; }
+.intro-rules span { margin: 0 auto; }
+.intro-rules span:first-child { width: 160px; }
+.intro-rules span:last-child { width: 160px; }
