@@ -58,8 +58,8 @@ def convert():
         orig_title = make_title(raw, dt)
         # 标题用日期
         title = dt.strftime('%Y/%m/%d')
-        # 正文：去掉 dayone-moment 图片引用，把原标题作为第一行
-        body = re.sub(r'!\[\]\(dayone-moment://[A-F0-9]+\)\n?', '', raw).strip()
+        # 正文：保留 dayone-moment 图片引用（后续上传脚本替换为 R2 URL）
+        body = raw.strip()
         # 如果原标题和正文开头不一样，把原标题加进去
         if orig_title and not body.startswith('# ' + orig_title):
             body = f'**{orig_title}**\n\n' + body
