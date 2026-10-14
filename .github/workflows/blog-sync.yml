@@ -7,6 +7,8 @@ name: Blog Sync & Deploy
 #       因此本文件放在源码所在分支（建议把 Hexo 源码仓库的默认分支设为 main）。
 
 on:
+  push:
+    branches: [main]
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch: {}
@@ -49,7 +51,7 @@ jobs:
           echo "CHANGED=$(git status --porcelain | wc -l)" >> "$GITHUB_ENV"
 
       - name: Commit synced posts
-        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch' || github.event_name == 'workflow_dispatch'
+        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "blog-sync[bot]"
           git config user.email "blog-sync[bot]@users.noreply.github.com"
@@ -62,14 +64,14 @@ jobs:
           fi
 
       - name: Set up Node.js
-        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch'
+        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: npm
 
       - name: Install dependencies
-        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch'
+        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
         run: |
           if [ -f package-lock.json ]; then
             npm ci --no-audit --no-fund
@@ -78,20 +80,20 @@ jobs:
           fi
 
       - name: Build site (hexo generate)
-        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch'
+        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
         run: npm run build
 
       - name: Configure Pages
-        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch'
+        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
-        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch'
+        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./public
 
       - name: Deploy to GitHub Pages
-        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch'
+        if: env.CHANGED != '0' || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
         id: deployment
         uses: actions/deploy-pages@v4
