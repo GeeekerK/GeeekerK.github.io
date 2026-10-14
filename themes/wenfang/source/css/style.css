@@ -868,3 +868,38 @@ a { color: inherit; text-decoration: none; }
   .footer-seal-row { gap: 14px; }
   .footer-meta { letter-spacing: 0.06em; }
 }
+
+/* 首页卷首小传 */
+.intro-section { padding-top: 0; }
+.intro-card {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 36px 40px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  line-height: 1.9;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+.intro-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+.intro-line {
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+}
+.intro-quote {
+  margin: 18px 0;
+  padding: 12px 20px;
+  border-left: 3px solid var(--accent, #c0502c);
+  background: rgba(192,80,44,0.05);
+  font-style: italic;
+  color: var(--text-secondary);
+}
+@media (max-width: 768px) {
+  .intro-card { padding: 24px 20px; }
+}
