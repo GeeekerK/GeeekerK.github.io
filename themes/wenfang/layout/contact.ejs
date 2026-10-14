@@ -20,10 +20,18 @@
     <h2 class="contact-label"><%= __('contact.socials') %></h2>
     <div class="contact-socials">
       <% for (var name in theme.social) { %>
-        <a class="contact-social" href="<%= theme.social[name].startsWith('http') || theme.social[name].startsWith('/') ? theme.social[name] : '#' %>">
-          <span><%= name %></span>
-          <span class="contact-arrow">↗</span>
-        </a>
+        <% if (name === 'WeChat') { %>
+          <div class="contact-social contact-social-wechat">
+            <span>WeChat</span>
+            <span class="contact-wechat-toggle" onclick="var el=this.parentNode.querySelector('.contact-wechat-id'); if(el.style.display==='none'||!el.style.display){el.style.display='block';this.textContent='−';}else{el.style.display='none';this.textContent='+';}">+</span>
+            <span class="contact-wechat-id" style="display:none;margin-top:6px;font-size:0.9em;color:var(--muted);">Ox_lokiking</span>
+          </div>
+        <% } else { %>
+          <a class="contact-social" href="<%= theme.social[name].startsWith('http') || theme.social[name].startsWith('/') ? theme.social[name] : '#' %>">
+            <span><%= name %></span>
+            <span class="contact-arrow">↗</span>
+          </a>
+        <% } %>
       <% } %>
     </div>
   </div>
