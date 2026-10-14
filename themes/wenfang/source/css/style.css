@@ -650,13 +650,13 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- article ---------- */
 .article { padding: 92px 28px; }
-.article-annual { max-width: none; padding: 0; }
+.article-annual { max-width: 760px; }
 .article-header {
   padding-bottom: 42px;
   margin-bottom: 52px;
   border-bottom: 3px double var(--fg);
 }
-.article-annual .article-header { border-bottom: 3px double var(--fg); margin-bottom: 0; padding: 110px 28px 42px; }
+.article-annual .article-header { margin-bottom: 52px; padding-bottom: 42px; }
 
 .chapter-dark { background: var(--bg); color: var(--fg); }
 .chapter-flex { display: flex; gap: 40px; }

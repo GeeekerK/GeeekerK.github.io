@@ -3,29 +3,21 @@
 %>
 <article class="article container<%= isAnnual ? ' article-annual' : '' %>">
   <% if (isAnnual) { %>
-    <!-- 年报：深色卷首 + 印章 -->
-    <header class="article-header chapter-dark">
-      <div class="article-header-inner container">
-        <div class="chapter-flex">
-          <p class="vertical chapter-vertical"><%= __('annual.vertical', date(page.date, 'YYYY')) %></p>
-          <div>
-            <div class="article-meta">
-              <time><%= date(page.date, 'YYYY年M月D日') %></time>
-              <span class="dot-sep">·</span>
-              <span><%= __('annual.label') %></span>
-            </div>
-            <h1 class="article-title"><%= page.title %></h1>
-            <span class="seal seal-l"><%= theme.seal_char %></span>
-            <% if (page.tags && page.tags.length) { %>
-              <div class="article-tags">
-                <% page.tags.each(function (tag) { %>
-                  <a class="tag" href="<%- url_for(tag.path) %>"><%= tag.name %></a>
-                <% }) %>
-              </div>
-            <% } %>
-          </div>
-        </div>
+    <header class="article-header">
+      <div class="article-meta">
+        <time><%= date(page.date, 'YYYY年M月D日') %></time>
+        <span class="dot-sep">·</span>
+        <span><%= __('annual.label') %></span>
       </div>
+      <h1 class="article-title"><%= page.title %></h1>
+      <span class="seal seal-l"><%= theme.seal_char %></span>
+      <% if (page.tags && page.tags.length) { %>
+        <div class="article-tags">
+          <% page.tags.each(function (tag) { %>
+            <a class="tag" href="<%- url_for(tag.path) %>"><%= tag.name %></a>
+          <% }) %>
+        </div>
+      <% } %>
     </header>
   <% } else { %>
     <header class="article-header">
