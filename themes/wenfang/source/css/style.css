@@ -658,11 +658,11 @@ a { color: inherit; text-decoration: none; }
 }
 .article-annual .article-header { border-bottom: none; margin-bottom: 0; padding: 110px 28px 92px; }
 
-.chapter-dark { background: var(--dark-surface); color: var(--dark-text); }
+.chapter-dark { background: var(--bg); color: var(--fg); }
 .chapter-flex { display: flex; gap: 40px; }
-.chapter-vertical { flex-shrink: 0; font-size: 0.92rem; color: var(--dark-muted); padding-top: 8px; }
-.chapter-dark .article-meta { color: var(--dark-muted); }
-.chapter-dark .article-title { color: var(--dark-text); }
+.chapter-vertical { flex-shrink: 0; font-size: 0.92rem; color: var(--muted); padding-top: 8px; }
+.chapter-dark .article-meta { color: var(--muted); }
+.chapter-dark .article-title { color: var(--fg); }
 .chapter-dark .seal-l { margin-top: 32px; }
 
 .article-meta { font-size: 0.85rem; letter-spacing: 0.1em; color: var(--meta); margin-bottom: 20px; }
