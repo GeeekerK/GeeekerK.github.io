@@ -878,3 +878,6 @@ a { color: inherit; text-decoration: none; }
 }
 .intro-content h2 { margin-top: 0; font-size: 1.4rem; }
 .intro-content h3 { margin-top: 1.6em; font-size: 1.05rem; }
+
+/* 小传与卷一之间的分割线 */
+.intro-rules { max-width: 680px; margin: 0 auto 20px; }
