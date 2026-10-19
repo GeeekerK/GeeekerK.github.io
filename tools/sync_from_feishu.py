@@ -518,6 +518,37 @@ def extract_category(body_lines):
     return "", rest
 
 
+def extract_meta_lines(body_lines):
+    """识别正文开头连续的「分类：」「标签：」行（任意顺序、中间可夹空行）。
+
+    返回 (category, tags, remaining_lines)；遇到第一行非元数据正文即停止扫描，
+    两类行都会从正文中移除，避免它们出现在最终页面上。
+    """
+    cat, tags = "", []
+    rest = []
+    idx = 0
+    n = len(body_lines)
+    while idx < n:
+        s = body_lines[idx].strip()
+        if not s:
+            rest.append(body_lines[idx])
+            idx += 1
+            continue
+        m_cat = CAT_LINE_RE.match(s)
+        if m_cat:
+            cat = m_cat.group(1).strip()
+            idx += 1
+            continue
+        m_tag = TAG_LINE_RE.match(s)
+        if m_tag:
+            tags = [t.strip() for t in re.split(r"[,，、]", m_tag.group(1)) if t.strip()]
+            idx += 1
+            continue
+        break
+    rest.extend(body_lines[idx:])
+    return cat, tags, rest
+
+
 def _yaml_list(items):
     """把列表格式化成 YAML flow list，含中文不需要引号"""
     return "[" + ", ".join(items) + "]" if items else "[]"
@@ -652,13 +683,11 @@ def main():
             manifest[document_id] = slug
             converter = DocConverter(document_id, token, slug)
             body_lines = converter.build(blocks)
-            # 文章类：从文档开头解析「分类：xxx」作为外层 category
-            if is_article:
-                inline_cat, body_lines = extract_category(body_lines)
-                if inline_cat:
-                    category = inline_cat
-                    print("  文档内分类: %s" % category)
-            tags, body_lines = extract_tags(body_lines)
+            # 从文档开头解析「分类：xxx」「标签：xxx」行（任意顺序），并从正文移除
+            inline_cat, tags, body_lines = extract_meta_lines(body_lines)
+            if is_article and inline_cat:
+                category = inline_cat
+                print("  文档内分类: %s" % category)
             if tags:
                 print("  提取标签: %s" % ", ".join(tags))
             # 文章类在归档/首页隐藏，只在著述页显示
