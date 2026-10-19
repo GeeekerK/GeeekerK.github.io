@@ -1,104 +1,98 @@
 {
-  "papers": [
-    {
-      "title": "Adversarial Robustness of Graph Neural Networks in Node Classification",
-      "authors": "Wang W., Li X., Zhang Y.",
-      "venue": "Proceedings of IEEE S&P",
-      "year": 2025,
-      "link": "#"
-    },
-    {
-      "title": "A Federated Learning Framework for Privacy-Preserving Traffic Analysis",
-      "authors": "Wang W., Chen H.",
-      "venue": "USENIX Security",
-      "year": 2024,
-      "link": "#"
-    }
-  ],
-  "books": [
-    {
-      "title": "纸墨为骨：一个工程师的写作手记",
-      "role": "著",
-      "year": 2025,
-      "publisher": "电子工业出版社"
-    },
-    {
-      "title": "CTF 实战指南",
-      "role": "合著",
-      "year": 2023,
-      "publisher": "人民邮电出版社"
-    }
-  ],
-  "articles": [
-    {
-      "title": "缓慢但正确地做事",
-      "venue": "本站 · 随笔",
-      "year": 2026,
-      "link": "/archives/"
-    },
-    {
-      "title": "缓慢但正确地做事",
-      "venue": "本站 · 随笔",
-      "year": 2026,
-      "link": "/2026/10/19/缓慢但正确地做事/"
-    },
-    {
-      "title": "尺度的微小",
-      "venue": "本站 · 随笔",
-      "year": 2026,
-      "link": "/2026/10/14/尺度的微小/"
-    },
-    {
-      "title": "少一点，反而更丰盛",
-      "venue": "本站 · 随笔",
-      "year": 2026,
-      "link": "/2026/10/14/少一点，反而更丰盛/"
-    },
-    {
-      "title": "关于恋爱、家庭与幸福的思考",
-      "venue": "本站 · 思考",
-      "year": 2026,
-      "link": "/2026/10/13/我向往的爱情：各自有所热爱，也共同认真生活/"
-    },
-    {
-      "title": "当\"家\"不再是默认选项",
-      "venue": "本站 · 社会观察",
-      "year": 2026,
-      "link": "/2026/10/13/当-家-不再是默认选项/"
-    },
-    {
-      "title": "读张宏杰《曾国藩传》有感",
-      "venue": "本站 · 读书",
-      "year": 2026,
-      "link": "/2026/10/06/读张宏杰-曾国藩传-有感/"
-    }
-  ],
-  "podcasts": [
-    {
-      "title": "与王伟聊技术写作与博客工程化",
-      "venue": "小宇宙 · 第 47 期",
-      "year": 2025,
-      "link": "#"
-    },
-    {
-      "title": "从 CTF 到安全研究：一个人的成长路径",
-      "venue": "喜马拉雅 · 安全咖啡馆",
-      "year": 2024,
-      "link": "#"
-    }
-  ],
-  "videos": [
-    {
-      "title": "Hexo + 飞书：零代码搭个人博客全自动发布",
-      "venue": "Bilibili · 12.4万播放",
-      "year": 2025,
-      "link": "#"
-    },
-    {
-      "title": "30 分钟读懂曾国藩的笨功夫",
-      "venue": "YouTube · 读书频道",
-      "year": 2026,
-      "link": "#"
-    }
-  ]
+    "papers": [
+        {
+            "title": "Adversarial Robustness of Graph Neural Networks in Node Classification",
+            "authors": "Wang W., Li X., Zhang Y.",
+            "venue": "Proceedings of IEEE S&P",
+            "year": 2025,
+            "link": "#"
+        },
+        {
+            "title": "A Federated Learning Framework for Privacy-Preserving Traffic Analysis",
+            "authors": "Wang W., Chen H.",
+            "venue": "USENIX Security",
+            "year": 2024,
+            "link": "#"
+        }
+    ],
+    "books": [
+        {
+            "title": "纸墨为骨：一个工程师的写作手记",
+            "role": "著",
+            "year": 2025,
+            "publisher": "电子工业出版社"
+        },
+        {
+            "title": "CTF 实战指南",
+            "role": "合著",
+            "year": 2023,
+            "publisher": "人民邮电出版社"
+        }
+    ],
+    "articles": [
+        {
+            "title": "缓慢但正确地做事",
+            "venue": "本站 · 随笔",
+            "year": 2026,
+            "link": "/2026/10/19/缓慢但正确地做事/"
+        },
+        {
+            "title": "尺度的微小",
+            "venue": "本站 · 随笔",
+            "year": 2026,
+            "link": "/2026/10/14/尺度的微小/"
+        },
+        {
+            "title": "少一点，反而更丰盛",
+            "venue": "本站 · 随笔",
+            "year": 2026,
+            "link": "/2026/10/14/少一点，反而更丰盛/"
+        },
+        {
+            "title": "关于恋爱、家庭与幸福的思考",
+            "venue": "本站 · 思考",
+            "year": 2026,
+            "link": "/2026/10/13/我向往的爱情：各自有所热爱，也共同认真生活/"
+        },
+        {
+            "title": "当\"家\"不再是默认选项",
+            "venue": "本站 · 社会观察",
+            "year": 2026,
+            "link": "/2026/10/13/当-家-不再是默认选项/"
+        },
+        {
+            "title": "读张宏杰《曾国藩传》有感",
+            "venue": "本站 · 读书",
+            "year": 2026,
+            "link": "/2026/10/06/读张宏杰-曾国藩传-有感/"
+        }
+    ],
+    "podcasts": [
+        {
+            "title": "与王伟聊技术写作与博客工程化",
+            "venue": "小宇宙 · 第 47 期",
+            "year": 2025,
+            "link": "#"
+        },
+        {
+            "title": "从 CTF 到安全研究：一个人的成长路径",
+            "venue": "喜马拉雅 · 安全咖啡馆",
+            "year": 2024,
+            "link": "#"
+        }
+    ],
+    "videos": [
+        {
+            "title": "Hexo + 飞书：零代码搭个人博客全自动发布",
+            "venue": "Bilibili · 12.4万播放",
+            "year": 2025,
+            "link": "#"
+        },
+        {
+            "title": "30 分钟读懂曾国藩的笨功夫",
+            "venue": "YouTube · 读书频道",
+            "year": 2026,
+            "link": "#"
+        }
+    ]
 }
