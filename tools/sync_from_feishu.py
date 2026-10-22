@@ -468,8 +468,12 @@ def parse_title(name):
     name = re.sub(r"\.md$", "", name.strip())
     m = DATE_RE.match(name)
     if m:
-        date = "%s-%02d-%02d" % (m.group(1), int(m.group(2)), int(m.group(3)))
-        title = m.group(4).strip() or name
+        y, mo, d = m.group(1), int(m.group(2)), int(m.group(3))
+        date = "%s-%02d-%02d" % (y, mo, d)
+        title = m.group(4).strip()
+        # 如果标题只是分类词（日记/周记/年记/其他），就用日期作为标题
+        if not title or title in ("日记", "日記", "周记", "週記", "周报", "週報", "年记", "年記", "年报", "年報", "其他"):
+            title = "%d/%02d/%02d" % (int(y), mo, d)
         return date, title
     return time.strftime("%Y-%m-%d"), name
 
