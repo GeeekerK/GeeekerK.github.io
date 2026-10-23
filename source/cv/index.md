@@ -4,8 +4,8 @@ layout: page
 ---
 
 <div class="cv-download-bar">
-  <a href="/files/resume-cn.pdf" class="cv-btn" download>下载 CV</a>
-  <a href="/files/resume-en.pdf" class="cv-btn" download>Download CV</a>
+  <a href="/files/wangwei_cv_CN.pdf" class="cv-btn" download>下载 CV</a>
+  <a href="/files/wangwei_cv_EN.pdf" class="cv-btn" download>Download CV</a>
 </div>
 
 # 王 伟
