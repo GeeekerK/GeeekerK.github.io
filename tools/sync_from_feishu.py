@@ -607,12 +607,16 @@ def _sync_publications(pub_articles):
     existing = data.get("articles", []) or []
     seen = set()
     merged = []
-    # 先保留手动条目（link 不以本站 /YYYY/ 日期路径开头的）
-    # 自动条目每次全量重建，避免旧版本残留
+    # 先保留手动条目（manual=true 的，或 link 不以本站 /YYYY/ 日期路径开头的）
+    # 飞书同步的条目每次全量重建，避免旧版本残留；但保留手动标记的技术文章
     for item in existing:
         link = item.get("link", "")
+        if item.get("manual"):
+            seen.add(link)
+            merged.append(item)
+            continue
         if re.match(r"^/\d{4}/\d{2}/\d{2}/", link):
-            continue  # 自动生成的，丢弃，下面重新加
+            continue  # 飞书自动生成的，丢弃，下面重新加
         seen.add(link)
         merged.append(item)
     # 再加入/更新飞书文章
