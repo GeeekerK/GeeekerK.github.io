@@ -1,358 +1,358 @@
 {
-    "papers": [
-        {
-            "title": "Adversarial Robustness of Graph Neural Networks in Node Classification",
-            "authors": "Wang W., Li X., Zhang Y.",
-            "venue": "Proceedings of IEEE S&P",
-            "year": 2025,
-            "link": "#"
-        },
-        {
-            "title": "A Federated Learning Framework for Privacy-Preserving Traffic Analysis",
-            "authors": "Wang W., Chen H.",
-            "venue": "USENIX Security",
-            "year": 2024,
-            "link": "#"
-        }
-    ],
-    "books": [
-        {
-            "title": "纸墨为骨：一个工程师的写作手记",
-            "role": "著",
-            "year": 2025,
-            "publisher": "电子工业出版社"
-        },
-        {
-            "title": "CTF 实战指南",
-            "role": "合著",
-            "year": 2023,
-            "publisher": "人民邮电出版社"
-        }
-    ],
-    "articles": [
-        {
-            "title": "论骑士与侠士之精神",
-            "venue": "本站 · 随笔",
-            "tags": [
-                "杂谈",
-                "士精神",
-                "骑士精神",
-                "人格修养"
-            ],
-            "year": 2026,
-            "link": "/2026/10/21/当代之士：以学问明义，以勇气践义/"
-        },
-        {
-            "title": "论现代化与汉化之区别",
-            "venue": "本站 · 随笔",
-            "tags": [
-                "杂谈",
-                "民族文化",
-                "现代化",
-                "文化多样性"
-            ],
-            "year": 2026,
-            "link": "/2026/10/21/在共同的现代生活中，保有不同的文化来处——谈现代化、汉化与民族文化的未来/"
-        },
-        {
-            "title": "缓慢但正确地做事",
-            "venue": "本站 · 随笔",
-            "tags": [
-                "杂谈",
-                "长期主义",
-                "自我成长",
-                "方法论"
-            ],
-            "year": 2026,
-            "link": "/2026/10/19/缓慢但正确地做事/"
-        },
-        {
-            "title": "尺度的微小",
-            "venue": "本站 · 随笔",
-            "tags": [
-                "杂谈",
-                "宇宙",
-                "天文",
-                "散文",
-                "哲思"
-            ],
-            "year": 2026,
-            "link": "/2026/10/14/尺度的微小/"
-        },
-        {
-            "title": "少一点，反而更丰盛",
-            "venue": "本站 · 随笔",
-            "tags": [
-                "杂谈",
-                "极简主义",
-                "生活哲学"
-            ],
-            "year": 2026,
-            "link": "/2026/10/14/少一点，反而更丰盛/"
-        },
-        {
-            "title": "关于恋爱、家庭与幸福的思考",
-            "venue": "本站 · 思考",
-            "tags": [
-                "杂谈",
-                "恋爱观",
-                "家庭观",
-                "幸福观",
-                "自我成长"
-            ],
-            "year": 2026,
-            "link": "/2026/10/13/我向往的爱情：各自有所热爱，也共同认真生活/"
-        },
-        {
-            "title": "当\"家\"不再是默认选项",
-            "venue": "本站 · 社会观察",
-            "tags": [
-                "杂谈",
-                "社会观察",
-                "家庭关系",
-                "开放式关系"
-            ],
-            "year": 2026,
-            "link": "/2026/10/13/当-家-不再是默认选项/"
-        },
-        {
-            "title": "读张宏杰《曾国藩传》有感",
-            "venue": "本站 · 读书",
-            "tags": [
-                "杂谈",
-                "个人传记",
-                "曾国藩",
-                "读书心得"
-            ],
-            "year": 2026,
-            "link": "/2026/10/06/读张宏杰-曾国藩传-有感/"
-        },
-        {
-            "title": "用 Hexo 搭建这个博客的完整过程",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "Hexo",
-                "前端",
-                "教程"
-            ],
-            "year": 2026,
-            "link": "/2026/09/22/build-blog-with-hexo/",
-            "manual": true
-        },
-        {
-            "title": "Hello, On-chain World",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "Web3",
-                "Ethereum"
-            ],
-            "year": 2026,
-            "link": "/2026/09/20/hello-onchain-world/",
-            "manual": true
-        },
-        {
-            "title": "CTF练习有趣题目的记录",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "CTF"
-            ],
-            "year": 2023,
-            "link": "/2023/04/17/xim-yi/",
-            "manual": true
-        },
-        {
-            "title": "CTF Reverse",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "CTF"
-            ],
-            "year": 2023,
-            "link": "/2023/04/17/CTF-Reverese/",
-            "manual": true
-        },
-        {
-            "title": "CTF Mobile",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "CTF"
-            ],
-            "year": 2023,
-            "link": "/2023/04/17/CTF-Mobile/",
-            "manual": true
-        },
-        {
-            "title": "CTF Crypto",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "CTF"
-            ],
-            "year": 2023,
-            "link": "/2023/04/17/CTF-Crypto/",
-            "manual": true
-        },
-        {
-            "title": "CTF之Misc篇",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "CTF"
-            ],
-            "year": 2023,
-            "link": "/2023/03/21/CTF之Misc篇/",
-            "manual": true
-        },
-        {
-            "title": "网络安全学习网址",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "安全"
-            ],
-            "year": 2023,
-            "link": "/2023/02/21/网络安全学习网址/",
-            "manual": true
-        },
-        {
-            "title": "工具软件下载",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术"
-            ],
-            "year": 2023,
-            "link": "/2023/02/21/工具软件下载/",
-            "manual": true
-        },
-        {
-            "title": "代码开发训练",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "Code"
-            ],
-            "year": 2023,
-            "link": "/2023/02/21/代码开发训练/",
-            "manual": true
-        },
-        {
-            "title": "CTF Wiki地址",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "CTF"
-            ],
-            "year": 2023,
-            "link": "/2023/02/21/CTF-Wiki地址/",
-            "manual": true
-        },
-        {
-            "title": "CTF每日收获",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "CTF"
-            ],
-            "year": 2023,
-            "link": "/2023/02/21/CTF-Daily/",
-            "manual": true
-        },
-        {
-            "title": "Cookies",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "Web"
-            ],
-            "year": 2023,
-            "link": "/2023/02/20/Cookies/",
-            "manual": true
-        },
-        {
-            "title": "HeTianLab 流量取证笔记",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "CTF"
-            ],
-            "year": 2022,
-            "link": "/2022/11/10/HeTianLab-Forensics/",
-            "manual": true
-        },
-        {
-            "title": "Markdown文本BLOG记录方法",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "blog"
-            ],
-            "year": 2022,
-            "link": "/2022/11/10/Blog-Record/",
-            "manual": true
-        },
-        {
-            "title": "随学",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术"
-            ],
-            "year": 2022,
-            "link": "/2022/10/03/HetianLab/",
-            "manual": true
-        },
-        {
-            "title": "CTF工具箱",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "CTF"
-            ],
-            "year": 2022,
-            "link": "/2022/10/03/CTF工具箱/",
-            "manual": true
-        },
-        {
-            "title": "CTF基础知识",
-            "venue": "本站 · 技术",
-            "tags": [
-                "技术",
-                "CTF"
-            ],
-            "year": 2022,
-            "link": "/2022/10/03/CTF基础知识/",
-            "manual": true
-        }
-    ],
-    "podcasts": [
-        {
-            "title": "与王伟聊技术写作与博客工程化",
-            "venue": "小宇宙 · 第 47 期",
-            "year": 2025,
-            "link": "#"
-        },
-        {
-            "title": "从 CTF 到安全研究：一个人的成长路径",
-            "venue": "喜马拉雅 · 安全咖啡馆",
-            "year": 2024,
-            "link": "#"
-        }
-    ],
-    "videos": [
-        {
-            "title": "Hexo + 飞书：零代码搭个人博客全自动发布",
-            "venue": "Bilibili · 12.4万播放",
-            "year": 2025,
-            "link": "#"
-        },
-        {
-            "title": "30 分钟读懂曾国藩的笨功夫",
-            "venue": "YouTube · 读书频道",
-            "year": 2026,
-            "link": "#"
-        }
-    ]
+  "papers": [
+    {
+      "title": "Adversarial Robustness of Graph Neural Networks in Node Classification",
+      "authors": "Wang W., Li X., Zhang Y.",
+      "venue": "Proceedings of IEEE S&P",
+      "year": 2025,
+      "link": "#"
+    },
+    {
+      "title": "A Federated Learning Framework for Privacy-Preserving Traffic Analysis",
+      "authors": "Wang W., Chen H.",
+      "venue": "USENIX Security",
+      "year": 2024,
+      "link": "#"
+    }
+  ],
+  "books": [
+    {
+      "title": "纸墨为骨：一个工程师的写作手记",
+      "role": "著",
+      "year": 2025,
+      "publisher": "电子工业出版社"
+    },
+    {
+      "title": "CTF 实战指南",
+      "role": "合著",
+      "year": 2023,
+      "publisher": "人民邮电出版社"
+    }
+  ],
+  "articles": [
+    {
+      "title": "当代之士：以学问明义，以勇气践义",
+      "venue": "本站 · 随笔",
+      "tags": [
+        "杂谈",
+        "士精神",
+        "骑士精神",
+        "人格修养"
+      ],
+      "year": 2026,
+      "link": "/2026/10/21/当代之士：以学问明义，以勇气践义/"
+    },
+    {
+      "title": "在共同的现代生活中，保有不同的文化来处——谈现代化、汉化与民族文化的未来",
+      "venue": "本站 · 随笔",
+      "tags": [
+        "杂谈",
+        "民族文化",
+        "现代化",
+        "文化多样性"
+      ],
+      "year": 2026,
+      "link": "/2026/10/21/在共同的现代生活中，保有不同的文化来处——谈现代化、汉化与民族文化的未来/"
+    },
+    {
+      "title": "缓慢但正确地做事",
+      "venue": "本站 · 随笔",
+      "tags": [
+        "杂谈",
+        "长期主义",
+        "自我成长",
+        "方法论"
+      ],
+      "year": 2026,
+      "link": "/2026/10/19/缓慢但正确地做事/"
+    },
+    {
+      "title": "尺度的微小",
+      "venue": "本站 · 随笔",
+      "tags": [
+        "杂谈",
+        "宇宙",
+        "天文",
+        "散文",
+        "哲思"
+      ],
+      "year": 2026,
+      "link": "/2026/10/14/尺度的微小/"
+    },
+    {
+      "title": "少一点，反而更丰盛",
+      "venue": "本站 · 随笔",
+      "tags": [
+        "杂谈",
+        "极简主义",
+        "生活哲学"
+      ],
+      "year": 2026,
+      "link": "/2026/10/14/少一点，反而更丰盛/"
+    },
+    {
+      "title": "关于恋爱、家庭与幸福的思考",
+      "venue": "本站 · 思考",
+      "tags": [
+        "杂谈",
+        "恋爱观",
+        "家庭观",
+        "幸福观",
+        "自我成长"
+      ],
+      "year": 2026,
+      "link": "/2026/10/13/我向往的爱情：各自有所热爱，也共同认真生活/"
+    },
+    {
+      "title": "当\"家\"不再是默认选项",
+      "venue": "本站 · 社会观察",
+      "tags": [
+        "杂谈",
+        "社会观察",
+        "家庭关系",
+        "开放式关系"
+      ],
+      "year": 2026,
+      "link": "/2026/10/13/当-家-不再是默认选项/"
+    },
+    {
+      "title": "读张宏杰《曾国藩传》有感",
+      "venue": "本站 · 读书",
+      "tags": [
+        "杂谈",
+        "个人传记",
+        "曾国藩",
+        "读书心得"
+      ],
+      "year": 2026,
+      "link": "/2026/10/06/读张宏杰-曾国藩传-有感/"
+    },
+    {
+      "title": "用 Hexo 搭建这个博客的完整过程",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "Hexo",
+        "前端",
+        "教程"
+      ],
+      "year": 2026,
+      "link": "/2026/09/22/build-blog-with-hexo/",
+      "manual": true
+    },
+    {
+      "title": "Hello, On-chain World",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "Web3",
+        "Ethereum"
+      ],
+      "year": 2026,
+      "link": "/2026/09/20/hello-onchain-world/",
+      "manual": true
+    },
+    {
+      "title": "CTF练习有趣题目的记录",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "CTF"
+      ],
+      "year": 2023,
+      "link": "/2023/04/17/xim-yi/",
+      "manual": true
+    },
+    {
+      "title": "CTF Reverse",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "CTF"
+      ],
+      "year": 2023,
+      "link": "/2023/04/17/CTF-Reverese/",
+      "manual": true
+    },
+    {
+      "title": "CTF Mobile",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "CTF"
+      ],
+      "year": 2023,
+      "link": "/2023/04/17/CTF-Mobile/",
+      "manual": true
+    },
+    {
+      "title": "CTF Crypto",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "CTF"
+      ],
+      "year": 2023,
+      "link": "/2023/04/17/CTF-Crypto/",
+      "manual": true
+    },
+    {
+      "title": "CTF之Misc篇",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "CTF"
+      ],
+      "year": 2023,
+      "link": "/2023/03/21/CTF之Misc篇/",
+      "manual": true
+    },
+    {
+      "title": "网络安全学习网址",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "安全"
+      ],
+      "year": 2023,
+      "link": "/2023/02/21/网络安全学习网址/",
+      "manual": true
+    },
+    {
+      "title": "工具软件下载",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术"
+      ],
+      "year": 2023,
+      "link": "/2023/02/21/工具软件下载/",
+      "manual": true
+    },
+    {
+      "title": "代码开发训练",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "Code"
+      ],
+      "year": 2023,
+      "link": "/2023/02/21/代码开发训练/",
+      "manual": true
+    },
+    {
+      "title": "CTF Wiki地址",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "CTF"
+      ],
+      "year": 2023,
+      "link": "/2023/02/21/CTF-Wiki地址/",
+      "manual": true
+    },
+    {
+      "title": "CTF每日收获",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "CTF"
+      ],
+      "year": 2023,
+      "link": "/2023/02/21/CTF-Daily/",
+      "manual": true
+    },
+    {
+      "title": "Cookies",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "Web"
+      ],
+      "year": 2023,
+      "link": "/2023/02/20/Cookies/",
+      "manual": true
+    },
+    {
+      "title": "HeTianLab 流量取证笔记",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "CTF"
+      ],
+      "year": 2022,
+      "link": "/2022/11/10/HeTianLab-Forensics/",
+      "manual": true
+    },
+    {
+      "title": "Markdown文本BLOG记录方法",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "blog"
+      ],
+      "year": 2022,
+      "link": "/2022/11/10/Blog-Record/",
+      "manual": true
+    },
+    {
+      "title": "随学",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术"
+      ],
+      "year": 2022,
+      "link": "/2022/10/03/HetianLab/",
+      "manual": true
+    },
+    {
+      "title": "CTF工具箱",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "CTF"
+      ],
+      "year": 2022,
+      "link": "/2022/10/03/CTF工具箱/",
+      "manual": true
+    },
+    {
+      "title": "CTF基础知识",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "CTF"
+      ],
+      "year": 2022,
+      "link": "/2022/10/03/CTF基础知识/",
+      "manual": true
+    }
+  ],
+  "podcasts": [
+    {
+      "title": "与王伟聊技术写作与博客工程化",
+      "venue": "小宇宙 · 第 47 期",
+      "year": 2025,
+      "link": "#"
+    },
+    {
+      "title": "从 CTF 到安全研究：一个人的成长路径",
+      "venue": "喜马拉雅 · 安全咖啡馆",
+      "year": 2024,
+      "link": "#"
+    }
+  ],
+  "videos": [
+    {
+      "title": "Hexo + 飞书：零代码搭个人博客全自动发布",
+      "venue": "Bilibili · 12.4万播放",
+      "year": 2025,
+      "link": "#"
+    },
+    {
+      "title": "30 分钟读懂曾国藩的笨功夫",
+      "venue": "YouTube · 读书频道",
+      "year": 2026,
+      "link": "#"
+    }
+  ]
 }
