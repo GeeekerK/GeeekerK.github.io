@@ -886,16 +886,20 @@ a { color: inherit; text-decoration: none; }
 }
 
 
-/* 著述页文章卡片对齐 */
+/* 著述页文章卡片对齐：固定行高 */
 .year-col .pub-row.tight {
-  min-height: 72px;
-  padding: 12px 0;
+  height: 76px;
+  padding: 8px 0;
   border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
 }
 .year-col .pub-title {
   font-size: 0.98rem;
-  line-height: 1.5;
-  margin-bottom: 6px;
+  line-height: 1.4;
+  margin-bottom: 4px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -904,6 +908,7 @@ a { color: inherit; text-decoration: none; }
 .year-col .pub-venue {
   font-size: 0.78rem;
   color: var(--muted);
+  line-height: 1.2;
 }
 .more-toggle {
   font-size: 12px;
