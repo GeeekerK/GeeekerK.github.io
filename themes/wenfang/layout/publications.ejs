@@ -52,10 +52,20 @@
     <% }) %>
   </div>
 
-  <% if (site.tags && site.tags.length) { %>
+  <%
+    // 从著述文章收集标签（不含日志标签）
+    var tagCounts = {};
+    pubs.articles.forEach(function(a) {
+      (a.tags || []).forEach(function(t) {
+        tagCounts[t] = (tagCounts[t] || 0) + 1;
+      });
+    });
+    var tagList = Object.keys(tagCounts).sort(function(a,b){return tagCounts[b]-tagCounts[a];});
+  %>
+  <% if (tagList.length) { %>
   <div class="pub-tags-cloud">
-    <% site.tags.toArray().sort(function(a,b){return b.length-a.length;}).forEach(function(tag) { %>
-      <a class="pub-tag" href="<%- url_for(tag.path) %>"><%= tag.name %> <span class="tag-count"><%= tag.length %></span></a>
+    <% tagList.forEach(function(t) { %>
+      <a class="pub-tag" href="/tags/<%= encodeURIComponent(t) %>/"><%= t %> <span class="tag-count"><%= tagCounts[t] %></span></a>
     <% }) %>
   </div>
   <% } %>
