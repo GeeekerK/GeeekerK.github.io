@@ -60,6 +60,7 @@ jobs:
             echo "nothing to commit"
           else
             git commit -m "chore: sync posts from Feishu $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git pull --rebase origin main || git pull --no-rebase origin main
             git push
           fi
 
