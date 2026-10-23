@@ -978,4 +978,10 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted);
   font-size: 14px;
   margin: 8px 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.cv-meta span {
+  white-space: nowrap;
 }
