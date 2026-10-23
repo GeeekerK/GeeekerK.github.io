@@ -26,7 +26,7 @@
       <div class="year-col">
         <p class="year-col-head"><%= y %></p>
         <% var yearPosts = yearGroups[y]; %>
-        <% var showCount = Math.min(8, yearPosts.length); %>
+        <% var showCount = Math.min(5, yearPosts.length); %>
         <% for (var i = 0; i < showCount; i++) { var pub = yearPosts[i]; %>
           <div class="pub-row tight">
             <div class="pub-main">
@@ -35,10 +35,10 @@
             </div>
           </div>
         <% } %>
-        <% if (yearPosts.length > 8) { %>
+        <% if (yearPosts.length > 5) { %>
           <div class="more-toggle" data-year="<%= y %>">more ▾</div>
           <div class="more-posts" data-year="<%= y %>" style="display:none;">
-            <% for (var i = 8; i < yearPosts.length; i++) { var pub = yearPosts[i]; %>
+            <% for (var i = 5; i < yearPosts.length; i++) { var pub = yearPosts[i]; %>
               <div class="pub-row tight">
                 <div class="pub-main">
                   <p class="pub-title"><a href="<%= pub.link %>"><%= pub.title %></a></p>
