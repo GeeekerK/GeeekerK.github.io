@@ -6,6 +6,8 @@ categories:
 tags:
   - CTF
   - Crypto
+hidden: true
+
 ---
 
 # Rabbit

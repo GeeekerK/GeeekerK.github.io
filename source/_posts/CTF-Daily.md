@@ -6,6 +6,8 @@ categories:
 tags:
   - CTF
   - Crypto
+hidden: true
+
 ---
 
 # 栅栏密码

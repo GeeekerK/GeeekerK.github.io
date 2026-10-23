@@ -5,6 +5,8 @@ categories:
   - 笔记
 tags:
   - 记录
+hidden: true
+
 ---
 
 1.JSP（JavaServer Pages）和JavaScript是用于开发Web应用程序的不同技术，在Web开发中有不同的作用和关系。

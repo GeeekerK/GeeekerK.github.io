@@ -6,6 +6,8 @@ categories:
 tags:
   - CTF
   - 资源
+hidden: true
+
 ---
 
 # CTF网站（国内）

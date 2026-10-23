@@ -6,6 +6,8 @@ categories:
 tags:
   - CTF
   - 基础
+hidden: true
+
 ---
 
 # CTF方向类型

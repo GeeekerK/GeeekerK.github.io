@@ -6,6 +6,8 @@ categories:
 tags:
   - CTF
   - Writeup
+hidden: true
+
 ---
 
 # Crypto

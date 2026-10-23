@@ -6,6 +6,8 @@ tags:
   - Ethereum
 categories:
   - 随笔
+hidden: true
+
 ---
 
 > gm. 这个博客正式上线了。

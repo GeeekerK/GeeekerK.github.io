@@ -6,6 +6,8 @@ categories:
 tags:
   - CTF
   - 取证
+hidden: true
+
 ---
 
 #   NetworkMiner

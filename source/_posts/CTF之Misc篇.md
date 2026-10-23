@@ -6,6 +6,8 @@ categories:
 tags:
   - CTF
   - Misc
+hidden: true
+
 ---
 
 **2023/03/25**

@@ -6,5 +6,7 @@ categories:
 tags:
   - CTF
   - Mobile
+hidden: true
+
 ---
 
