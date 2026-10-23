@@ -29,7 +29,15 @@
           <div class="pub-row tight">
             <div class="pub-main">
               <p class="pub-title"><a href="<%= pub.link %>"><%= pub.title %></a></p>
+              <% if (pub.tags && pub.tags.length) { %>
+              <p class="pub-tags">
+                <% pub.tags.forEach(function(t) { %>
+                  <a class="pub-tag" href="/tags/<%= encodeURIComponent(t) %>/"><%= t %></a>
+                <% }) %>
+              </p>
+              <% } else { %>
               <p class="pub-venue"><%= pub.venue %></p>
+              <% } %>
             </div>
           </div>
         <% }) %>
