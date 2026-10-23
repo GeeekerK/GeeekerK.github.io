@@ -11,8 +11,11 @@ layout: page
 # 王 伟
 
 <div class="cv-meta">
-  geeekerk@gmail.com · Tel/WeChat: 17855219101 · Blog: geeekerk.github.io<br>
-  GitHub: github.com/GeeekerK · LinkedIn: linkedin.com/in/wangwei
+  <span>📧 geeekerk@gmail.com</span>
+  <span>📱 17855219101</span>
+  <span>🌐 geeekerk.github.io</span>
+  <span>🐙 github.com/GeeekerK</span>
+  <span>💼 linkedin.com/in/wangwei</span>
 </div>
 
 ---
