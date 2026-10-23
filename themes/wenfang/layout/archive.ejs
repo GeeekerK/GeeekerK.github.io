@@ -63,15 +63,4 @@
       </a>
     <% }) %>
   </section>
-
-  <% if (langTags.length) { %>
-    <section class="container tags-section">
-      <h2 class="section-title"><span class="juan"><%= __('archives.tags') %></span><%= __('archives.tags_title') %></h2>
-      <div class="tag-cloud">
-        <% langTags.forEach(function (tag) { %>
-          <a class="tag" href="<%- url_for(tag.path) %>"><%= tag.name %> <span class="tag-count"><%= tag.length %></span></a>
-        <% }) %>
-      </div>
-    </section>
-  <% } %>
 <% } %>
