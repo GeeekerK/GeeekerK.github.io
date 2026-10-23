@@ -576,10 +576,15 @@ def _pub_entry(title, date, slug, category="", tags=None):
     """构造 publications.json 里 articles 数组的一条记录"""
     y, m, d = date.split("-")
     venue = "本站 · %s" % category if category else "本站"
+    tags = list(tags or [])
+    # 一级标签：技术 or 杂谈
+    primary = "技术" if category and "技术" in category else "杂谈"
+    if not tags or tags[0] != primary:
+        tags.insert(0, primary)
     return {
         "title": title,
         "venue": venue,
-        "tags": tags or [],
+        "tags": tags,
         "year": int(y),
         "link": "/%s/%s/%s/%s/" % (y, m, d, slug),
     }
