@@ -572,13 +572,14 @@ def make_front_matter(title, date, categories=None, tags=None, hidden=False):
     return fm
 
 
-def _pub_entry(title, date, slug, category=""):
+def _pub_entry(title, date, slug, category="", tags=None):
     """构造 publications.json 里 articles 数组的一条记录"""
     y, m, d = date.split("-")
     venue = "本站 · %s" % category if category else "本站"
     return {
         "title": title,
         "venue": venue,
+        "tags": tags or [],
         "year": int(y),
         "link": "/%s/%s/%s/%s/" % (y, m, d, slug),
     }
@@ -706,7 +707,7 @@ def main():
                     skipped.append(name)
                     print("  无变化，跳过: %s" % slug)
                     if is_article:
-                        pub_articles.append(_pub_entry(title, date, slug, category))
+                        pub_articles.append(_pub_entry(title, date, slug, category, tags))
                     continue
                 updated.append(name)
             else:
@@ -718,7 +719,7 @@ def main():
                     f.write(content)
                 print("  已写入 %s" % dest)
             if is_article:
-                pub_articles.append(_pub_entry(title, date, slug, category))
+                pub_articles.append(_pub_entry(title, date, slug, category, tags))
         except Exception as e:
             failed.append((name, str(e)))
             print("  [error] %s: %s" % (name, e))
