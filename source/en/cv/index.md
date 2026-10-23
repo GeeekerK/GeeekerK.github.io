@@ -12,8 +12,11 @@ lang: en
 # WEI WANG
 
 <div class="cv-meta">
-  geeekerk@gmail.com · Phone/WeChat: +86 17855219101 · Blog: geeekerk.github.io<br>
-  GitHub: github.com/GeeekerK · LinkedIn: linkedin.com/in/wangwei
+  <span>📧 geeekerk@gmail.com</span>
+  <span>📱 +86 17855219101</span>
+  <span>🌐 geeekerk.github.io</span>
+  <span>🐙 github.com/GeeekerK</span>
+  <span>💼 linkedin.com/in/wangwei</span>
 </div>
 
 ---
