@@ -4,31 +4,48 @@ layout: page
 lang: en
 ---
 
-# 王伟（ワン・ウェイ）
+<div class="cv-download-bar">
+  <a href="/files/resume-cn.pdf" class="cv-btn" download>下载中文 PDF</a>
+  <a href="/files/resume-en.pdf" class="cv-btn" download>Download English PDF</a>
+</div>
 
-*セキュリティ学習者 · 開発者 · 記録し続ける人*
+# Wang Wei
 
----
-
-## 方向
-
-- **セキュリティ**：CTF（Crypto / Misc / Mobile / Reverse / フォレンジック）
-- **開発**：Python、Web の基礎、ツールスクリプト
-- **習慣**：日記と週報。記録で忘却に抗う
-
-## 経歴
-
-**独立した学習と創作** — 2022 年 〜 現在
-個人技術ブログを運営（2022 年創刊、前身は Geeker BLOG）。CTF の学習ノートとツール記録を継続的に公開。
-
-## 著作
-
-記事と著作の一覧は[著作ページ](/ja/publications/)へ。
-
-## 連絡
-
-[連絡ページ](/ja/contact/) · [GitHub](https://github.com/GeeekerK) · [Bilibili](https://space.bilibili.com/20238211)
+<div class="cv-meta">
+  geeekerk@gmail.com · GitHub: GeeekerK · Bilibili: space.bilibili.com/23288546
+</div>
 
 ---
 
-> このページはブラウザの「印刷 → PDF として保存」でそのまま履歴書にできます。
+## Education
+
+**The University of Tokyo** (Pre-Master) · 2025 — Present
+*Research: Cybersecurity, Machine Learning*
+
+---
+
+## Skills
+
+- **Security**: Full-stack CTF (Crypto / Misc / Mobile / Reverse / Forensics)
+- **Development**: Python, JavaScript, Shell, Web fundamentals
+- **Tools**: Git, Docker, Linux, Hexo, Cloudflare R2
+
+---
+
+## Projects
+
+**Personal Tech Blog** — 2022 — Present
+- Built and maintain a Hexo-based blog with custom theme (wenfang)
+- Automated Feishu → GitHub Actions → deployment pipeline
+- Dark/light mode, i18n (zh/en/ja)
+
+**CTF Training & Writeups** — 2022 — 2024
+- Systematic training across Crypto, Reverse, Misc, Mobile
+- Curated knowledge base, tool collection, resource library
+
+---
+
+## More
+
+- See [Publications](/publications/) for articles
+- See [Contact](/contact/) for social links
