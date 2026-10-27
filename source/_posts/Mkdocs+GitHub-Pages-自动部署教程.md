@@ -14,6 +14,8 @@ hidden: true
 
 创建好文件夹（即站点目录），进入其中。使用 `mkdocs new .` 将当前目录作为站点目录，然后修改 mkdocs.yml，比如下面：
 
+![mkdocs.yml 配置示例](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/mkdocs-deploy/config.png)
+
 ```
 
 repo_url: https://github.com/0xFUDAO/Roadmap
@@ -52,6 +54,8 @@ markdown_extensions:
 ```
 
 其中 nav 部分用于设置页面左侧的目录栏，可以完全自己制定展开集。上面 nav 生成的页面会有侧边导航菜单（Home 展开状态，Commands、Project layout 等英文选项，以及开发技术、投资调研、每周分享、相关资源等中文分类项，最底部是 About 选项）。
+
+![侧边导航菜单效果](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/mkdocs-deploy/nav.png)
 
 其中每个页面是一个 md 文件，都要放在 docs 目录下。
 

@@ -14,6 +14,8 @@ hidden: true
 
 ### 基础概念
 
+![vector 基础语法](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-2/vector_base.png)
+
 Vector（向量）类似其他语言中的数组，内部存储的是同一类型的数据。
 
 |  |  |
@@ -25,6 +27,8 @@ Vector（向量）类似其他语言中的数组，内部存储的是同一类�
 |  |  |
 
 ### 查询功能
+
+![vector 查询功能](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-2/vector_query.png)
 
 |  |  |
 
@@ -43,6 +47,8 @@ Vector（向量）类似其他语言中的数组，内部存储的是同一类�
 |  |  |
 
 ### 增删改1
+
+![vector 增删改（一）](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-2/vector_rw1.png)
 
 |  |  |
 
@@ -67,6 +73,8 @@ Vector（向量）类似其他语言中的数组，内部存储的是同一类�
 |  |  |
 
 ### 增删改2
+
+![vector 增删改（二）](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-2/vector_rw2.png)
 
 |  |  |
 

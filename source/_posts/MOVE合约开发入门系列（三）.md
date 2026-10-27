@@ -33,6 +33,8 @@ struct People{
 
 ```
 
+![struct 代码示例](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-3/struct.png)
+
 ### 修饰符
 
 - Copy：值能够被复制。
@@ -45,7 +47,11 @@ struct People{
 
 除 struct 类型外，其他的类型默认具备 store、drop、copy 的能力，struct 最终是存储在用户的地址上（或者被销毁），不存在 aptos 合约里，aptos 合约是一个全纯的函数。
 
+![四种能力示意](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-3/abilities.png)
+
 #### drop
+
+![drop 能力对比](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-3/drop.png)
 
 值能够在使用结束后被销毁。
 
@@ -79,6 +85,8 @@ fun test6(){
 ```
 
 #### copy
+
+![copy 能力对比](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-3/copy.png)
 
 值能够在使用结束后被复制。
 
@@ -121,6 +129,8 @@ fun test5(){
 
 #### key
 
+![key 能力示例](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-3/key.png)
+
 值可以用作全局存储操作的 key。
 
 ```
@@ -144,6 +154,8 @@ public fun test_mint(account: &signer) acquires Coin{
 ```
 
 #### store
+
+![store 能力示例](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-3/store.png)
 
 值可以被全局存储，通常配合 key 使用。
 
@@ -301,6 +313,8 @@ fun main(){
 
 ```
 
+![模块导入方式](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-3/use.png)
+
 ### 作用域
 
 可以再全局定义，也可以定义在函数内部，只在所在的作用域内有效。
@@ -313,6 +327,8 @@ fun main(){
 }
 
 ```
+
+![作用域示例](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-3/scope.png)
 
 ### Public(friend)
 

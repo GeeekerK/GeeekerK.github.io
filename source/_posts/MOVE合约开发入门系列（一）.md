@@ -101,6 +101,8 @@ module Lesson1::HelloWorld{
 
 通常我们定义一个变量为对象时，其对象的值存储在堆上，其堆内存的索引存储在栈上，用栈上的索引指向堆上存储的引用类型数据。（内存模型示意：栈上有 n = 1000、s = "hello world"、person = obj，堆上有一个对象 {name: "kaso", age: 25}，person 通过指针指向它。）
 
+![值类型与引用类型的内存模型](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-1/memory.png)
+
 ### MOVE语言的核心差异
 
 在值类型与引用类型关系上，不同于其他语言的索引方式，而是以"所有权"来作为引用类型的操作：
@@ -110,6 +112,8 @@ module Lesson1::HelloWorld{
 1. 所有权以转移的形式流转给其他变量；
 
 对比：Javascript 中 person2 = person 后两者指向同一对象，若 person2.age = 18 则 person.age = 18；C++ 中赋值会拷贝出新对象，若 person2.age = 18 则 person.age = 25 不变；Move 中 person2 = person 后，person 找不到对应值，意为转移所有权。
+
+![Javascript / C++ / Move 赋值语义对比](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/move-1/semantics.png)
 
 可通过运行以下代码体会 MOVE 的所有权转移，体会到 MOVE 语言作为面向资产的优势：
 

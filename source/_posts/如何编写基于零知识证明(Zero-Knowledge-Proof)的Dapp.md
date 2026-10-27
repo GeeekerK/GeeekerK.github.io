@@ -10,6 +10,8 @@ hidden: true
 
 过去几个月，零知识（ZK）加密技术风靡一时。随着新的 zkRollups 和 zkEVM 的发布，加密世界将注意力转向零知识证明为区块链上的隐私和可扩展性问题提供优雅解决方案的能力。该帖子假设您了解 Solidity 和 Typescript（react/next.js），并在此帮助下了解如何编写 ZK 电路（在 Circom 中）以及如何将其集成到 next.js 应用程序中。此外，关于有限域的基本知识也很有用。
 
+![ZK Dapp 封面](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/zk-dapp/cover.png)
+
 这篇文章的主要目的不是解释如何在 Circom 中编写电路，而是概述从在 Circom 中编写代码到某人可以在他的 dApp 中将电路组连通合约和前端的一系列步骤。
 
 ## 我们将要构建的内容
@@ -42,6 +44,8 @@ ZK 电路是一种程序，给定一组输入，输出一个证明，可以轻�
 
 总体流程分为三部分：Circuit（编写电路 → 编译为中间表示 → 基于 Powers of Tau 可信设置文件生成证明密钥）、Contract（编写利用或继承验证器的智能合约 → 导出智能合约验证器 → 部署合约 → 得到交易结果）、Frontend（用户输入 → 计算见证并生成证明 → 提交带证明的交易 → 交易结果反馈并更新前端）。
 
+![整体流程图](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/zk-dapp/overview.png)
+
 ## Let's dive in
 
 我将根据上面的一般流程图将其分为三个部分，以便更容易理解。电路部分讨论了在 Circom 中编写 ZK 电路的所有内容，然后我们将其导出到与前端部分交互的合约部分。
@@ -64,6 +68,8 @@ yarn create next-app
 
 配置新创立的 next.js 仓库（项目名、TypeScript、ESLint、src 目录、experimental app 目录、导入别名）。
 
+![yarn create next-app](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/zk-dapp/nextapp.png)
+
 完成所有操作后，进入文件夹，然后运行命令添加以下包：
 
 ```
@@ -73,6 +79,8 @@ yarn add circomlib snarkjs wagmi ethers@^5 axios @mantine/core @mantine/hooks @m
 ```
 
 ## Circuit(电路)
+
+![合约部分流程](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/zk-dapp/contract_flow.png)
 
 注：Powers of Tau 是一个旨在创建部分 zk-SNARK 参数的 MPC 仪式，适用于深度高达 2^21 的电路。它将所有 zk-SNARK MPC 共通的一个步骤整合到单一的仪式中，极大地降低了单次 MPC 的成本，并且允许其适应几乎无限数量的参与者。
 
@@ -180,6 +188,8 @@ snarkjs plonk setup build/simple_multiplier.r1cs ptau/powersOfTau28_hez_final_08
 ```
 
 ## Contract(合约)
+
+![前端部分流程](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/zk-dapp/frontend_flow.png)
 
 ### 配置
 
@@ -336,6 +346,8 @@ export const Addresses = {
 ```
 
 太棒了！现在我们已经部署了验证器和合约，并准备在浏览器中构建用户界面！
+
+![Vercel 新建项目](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/zk-dapp/vercel_new.png)
 
 ## 前端
 
@@ -563,6 +575,10 @@ export const executeTransaction = async (proof: any, publicSignals: Array<string
 您可以通过在项目根目录中运行 `yarn dev` 来运行本地服务器以进行试用。
 
 此外，您还可以部署到 Vercel，将您的 dApp 放在网络上供任何人使用。首先，创建一个新的 Github 存储库并提交所有更改并将文件推送到其中。转到 Vercel，然后添加一个新项目：选择 Add New... -> Project，选择您想要导入的 git 存储库（zk_example_dapp），确保框架预设是 Next.js，然后点击部署。等待几分钟让项目构建完成，然后你应该会得到一个可以使用或发送给朋友的链接。我的部署在这里：https://zk-example-dapp.vercel.app/
+
+![Vercel 配置](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/zk-dapp/vercel_config.png)
+
+![Vercel 导入仓库](https://pub-30d17fc7e72a4ebd980e1c0a6fcb7acc.r2.dev/csdn/zk-dapp/vercel_import.png)
 
 试试吧！导航到您在 Vercel 上部署的页面并尝试一下！
 
