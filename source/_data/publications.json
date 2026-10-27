@@ -31,70 +31,6 @@
   ],
   "articles": [
     {
-      "title": "如何编写基于零知识证明(Zero-Knowledge Proof)的Dapp",
-      "venue": "本站 · 技术",
-      "tags": [
-        "技术",
-        "区块链",
-        "智能合约",
-        "零知识证明",
-        "Web3"
-      ],
-      "year": 2026,
-      "link": "/2026/10/27/如何编写基于零知识证明(Zero-Knowledge-Proof)的Dapp/"
-    },
-    {
-      "title": "Mkdocs+GitHub Pages 自动部署教程",
-      "venue": "本站 · 技术",
-      "tags": [
-        "技术",
-        "GitHub",
-        "MkDocs",
-        "文档部署"
-      ],
-      "year": 2026,
-      "link": "/2026/10/27/Mkdocs+GitHub-Pages-自动部署教程/"
-    },
-    {
-      "title": "MOVE合约开发入门系列（二）",
-      "venue": "本站 · 技术",
-      "tags": [
-        "技术",
-        "MOVE",
-        "智能合约",
-        "Aptos",
-        "区块链"
-      ],
-      "year": 2026,
-      "link": "/2026/10/27/MOVE合约开发入门系列（二）/"
-    },
-    {
-      "title": "MOVE合约开发入门系列（三）",
-      "venue": "本站 · 技术",
-      "tags": [
-        "技术",
-        "MOVE",
-        "智能合约",
-        "Aptos",
-        "区块链"
-      ],
-      "year": 2026,
-      "link": "/2026/10/27/MOVE合约开发入门系列（三）/"
-    },
-    {
-      "title": "MOVE合约开发入门系列（一）",
-      "venue": "本站 · 技术",
-      "tags": [
-        "技术",
-        "MOVE",
-        "智能合约",
-        "Aptos",
-        "区块链"
-      ],
-      "year": 2026,
-      "link": "/2026/10/27/MOVE合约开发入门系列（一）/"
-    },
-    {
       "title": "论骑士与侠士之精神",
       "venue": "本站 · 随笔",
       "tags": [
@@ -215,6 +151,70 @@
       "year": 2026,
       "link": "/2026/09/20/hello-onchain-world/",
       "manual": true
+    },
+    {
+      "title": "如何编写基于零知识证明(Zero-Knowledge Proof)的Dapp",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "区块链",
+        "智能合约",
+        "零知识证明",
+        "Web3"
+      ],
+      "year": 2024,
+      "link": "/2024/08/22/如何编写基于零知识证明(Zero-Knowledge-Proof)的Dapp/"
+    },
+    {
+      "title": "Mkdocs+GitHub Pages 自动部署教程",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "GitHub",
+        "MkDocs",
+        "文档部署"
+      ],
+      "year": 2024,
+      "link": "/2024/06/08/Mkdocs+GitHub-Pages-自动部署教程/"
+    },
+    {
+      "title": "MOVE合约开发入门系列（二）",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "MOVE",
+        "智能合约",
+        "Aptos",
+        "区块链"
+      ],
+      "year": 2024,
+      "link": "/2024/04/09/MOVE合约开发入门系列（二）/"
+    },
+    {
+      "title": "MOVE合约开发入门系列（三）",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "MOVE",
+        "智能合约",
+        "Aptos",
+        "区块链"
+      ],
+      "year": 2024,
+      "link": "/2024/04/09/MOVE合约开发入门系列（三）/"
+    },
+    {
+      "title": "MOVE合约开发入门系列（一）",
+      "venue": "本站 · 技术",
+      "tags": [
+        "技术",
+        "MOVE",
+        "智能合约",
+        "Aptos",
+        "区块链"
+      ],
+      "year": 2024,
+      "link": "/2024/04/08/MOVE合约开发入门系列（一）/"
     },
     {
       "title": "CTF练习有趣题目的记录",

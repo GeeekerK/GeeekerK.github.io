@@ -1,6 +1,6 @@
 ---
 title: MOVE合约开发入门系列（一）
-date: 2026-10-27 00:00:00 +0800
+date: 2024-04-08 00:00:00 +0800
 categories: [技术]
 tags: [MOVE, 智能合约, Aptos, 区块链]
 hidden: true

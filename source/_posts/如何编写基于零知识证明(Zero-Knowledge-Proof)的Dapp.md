@@ -1,6 +1,6 @@
 ---
 title: 如何编写基于零知识证明(Zero-Knowledge Proof)的Dapp
-date: 2026-10-27 00:00:00 +0800
+date: 2024-08-22 00:00:00 +0800
 categories: [技术]
 tags: [区块链, 智能合约, 零知识证明, Web3]
 hidden: true

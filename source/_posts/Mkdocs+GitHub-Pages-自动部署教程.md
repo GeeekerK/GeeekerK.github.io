@@ -1,6 +1,6 @@
 ---
 title: Mkdocs+GitHub Pages 自动部署教程
-date: 2026-10-27 00:00:00 +0800
+date: 2024-06-08 00:00:00 +0800
 categories: [技术]
 tags: [GitHub, MkDocs, 文档部署]
 hidden: true
