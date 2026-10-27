@@ -33,6 +33,14 @@ sync_from_feishu.py — 把飞书云文档同步为 Hexo 博客文章
     标签：飞书同步, Hexo, wenfang主题
   多个标签用中英文逗号或顿号分隔。不写这行则 tags 为空。
 
+图片（Cloudflare R2 返回链接方案）
+---------------------------------
+  博客正文中的图片（尤其大图）统一采用 Cloudflare R2 返回链接方案：
+  在飞书文档正文中直接写入 Markdown 图片语法 `![说明](https://pub-xxx.r2.dev/...)`。
+  飞书会把该行存为 `!` + 链接文本（带方括号），同步脚本会自动剥掉方括号，
+  还原成标准 Markdown 图片语法输出，博客侧直接引用 R2 公网链接，
+  不再把图片下载进仓库。此方案为博客大媒体文件的默认方案。
+
 环境变量
 ========
   FEISHU_APP_ID       必填 飞书自建应用 App ID
@@ -285,6 +293,10 @@ def text_from_elements(elements):
         # 转义会影响渲染的裸字符，避免破坏 Markdown
         link = style.get("link")
         if link and link.get("url"):
+            # 飞书把 Markdown 图片语法 `![alt](url)` 存为 `!` + 链接，且链接文本带方括号 `[alt]`。
+            # 这里把方括号剥掉，使其还原为标准 Markdown 图片语法 `![alt](url)`（R2 返回链接方案）。
+            if content.startswith("[") and content.endswith("]"):
+                content = content[1:-1]
             content = "[%s](%s)" % (content, link["url"])
         if style.get("bold"):
             content = "**%s**" % content
@@ -485,7 +497,7 @@ def slugify(title, date):
     if re.fullmatch(r"[\d/\-年月日\s]+", title or ""):
         return date
     # 去掉中英文标点里不适合做 URL 的字符，保留中文和常见标点
-    clean = re.sub(r'[\\/:*?"<>|\s《》〈〉「」『』]+', "-", title).strip("-")
+    clean = re.sub(r"[\\/:*?\"<>|\s《》〈〉「」『』]+", "-", title).strip("-")
     return "%s-%s" % (date, clean) if date else clean
 
 
