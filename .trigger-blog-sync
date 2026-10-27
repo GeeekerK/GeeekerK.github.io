@@ -1,1 +1,1 @@
-trigger: 重跑同步以修正5篇CSDN迁移文章的日期（修复脚本后）
+trigger: 插入R2图片链接后重跑同步（脚本支持Markdown图片语法）
