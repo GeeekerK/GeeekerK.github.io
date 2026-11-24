@@ -1,10 +1,15 @@
 name: Blog Sync & Deploy
 
 # 触发方式：
-#   - 定时（每天北京时间 0 点同步一次；Actions cron 使用 UTC，故 0 16 * * * = 北京 0 点）
-#   - 手动触发（仓库 Actions 页面点 Run workflow，或由用户/助手推送触发）
+#   - 主动触发（主路径，保证每天北京时间 0:00 准点）：
+#     豆包定时任务「博客每日0点同步」每天 0:00 更新 .trigger-blog-sync 并 push，
+#     由下面的 push 事件立即触发本 workflow。
+#   - 定时兜底：schedule cron '0 16 * * *'（UTC 16:00 = 北京 0 点）。
+#     注意 GitHub Actions 的 schedule 只负责排队，高峰期会延迟数小时，
+#     因此它仅作为主动触发失败时的兜底，不作为准点保证。
+#   - 手动触发：仓库 Actions 页面点 Run workflow。
 # 说明：GitHub Actions 的 schedule 只认默认分支上的 workflow 文件，
-#       因此本文件放在源码所在分支（建议把 Hexo 源码仓库的默认分支设为 main）。
+#       因此本文件放在源码所在分支（main）。
 
 on:
   push:
